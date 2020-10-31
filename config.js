@@ -1,14 +1,14 @@
 'use strict';
 
 module.exports = {
-  url: 'https://lumen.netlify.com',
+  url: 'https://lokesh1729.com',
   pathPrefix: '/',
-  title: 'Blog by John Doe',
-  subtitle: 'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
+  title: 'Blog by Lokesh Sanapalli',
+  subtitle: 'Hello World!',
   copyright: '© All rights reserved.',
-  disqusShortname: '',
-  postsPerPage: 4,
-  googleAnalyticsId: 'UA-73379983-2',
+  disqusShortname: 'lokesh1729',
+  postsPerPage: 5,
+  googleAnalyticsId: 'UA-122847285-2',
   useKatex: false,
   menu: [
     {
@@ -25,24 +25,24 @@ module.exports = {
     }
   ],
   author: {
-    name: 'John Doe',
+    name: 'Lokesh Sanapalli',
     photo: '/photo.jpg',
-    bio: 'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
+    bio: ' Lokesh Sanapalli is a software engineer who loves to solve real world problems using software engineering',
     contacts: {
-      email: '',
-      facebook: '#',
-      telegram: '#',
-      twitter: '#',
-      github: '#',
+      email: 'hi@lokesh1729.com',
+      facebook: 'lokeshl729',
+      telegram: '+918466905904',
+      twitter: 'pylokesh',
+      github: 'lokesh1729',
+      linkedin: 'lokesh1729',
+      instagram: 'slokesh1729',
+      youtube: 'UCSJCJ19LZMcfusT4uKqZKbQ',
       rss: '',
       vkontakte: '',
-      linkedin: '#',
-      instagram: '#',
       line: '',
       gitlab: '',
       weibo: '',
       codepen: '',
-      youtube: '',
       soundcloud: '',
       medium: '',
     }

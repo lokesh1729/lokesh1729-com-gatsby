@@ -69,15 +69,13 @@ def find_max_sub_array_sum(arr):
   return global_max
 ```
 
-
-
 After learning kadane's algorithm, let's try to solve this problem <https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/>
 
 From the problem description, we need to maximize the profit by finding optimal buy and sell price. You cannot sell first and buy later.
 
 Example : \[7, 1, 5, 3, 6, 4]
 
-Answer: we'll buy on day 2 at $1 and sell on day 5 at $6 with a total profit of $5.
+Answer: we'll buy on day 2 at price 1 and sell on day 5 at price 6 with a total profit of $5.
 
 When I first saw this problem and above example, I thought of a solution to find the index of minimum element. From that index, traverse the whole array and find the maximum which will give our answer. But, I was wrong. Let's see how
 

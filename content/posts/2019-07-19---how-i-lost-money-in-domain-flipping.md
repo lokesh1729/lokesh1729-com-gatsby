@@ -1,15 +1,16 @@
 ---
 template: post
-title: "How I lost money in domain flipping"
-date: 2019-07-19
+title: How I lost money in domain flipping
+slug: domain-flipping
+socialImage: /media/image-2.jpg
 draft: false
-slug: "domain-flipping"
-category: "Personal"
+date: 2019-07-19
+description: Buying domains at a cheaper price and selling at a higher price
+  later is called domain flipping. Out of enthusiasm, I burnt my hands by buying
+  domains. In this post, I blog about my experience of domain flipping.
+category: personal
 tags:
-  - "Domains"
-  - "LessonsLearnt"
-description: "Buying domains at a cheaper price and selling at a higher price later is called domain flipping. Out of enthusiasm, I burnt my hands by buying domains. In this post, I blog about my experience of domain flipping."
-socialImage: "/media/image-2.jpg"
+  - experiments
 ---
 
 So it all started last year in July when my friend told me about this website called [domainz.io](https://domainz.io). I went through the website, found it interesting, did some research on buying and selling domains. At first, I thought that I can make more money if I buy good domains. so, I headed over to Twitter and asked `domainz` if I can make profits buying domains from him. he said to buy some domains and sell it on flippa, so I bought a subscription for 15$, then browsed through few domains and bought the following domains. Total cost around 20k INR which is a good amount of money.

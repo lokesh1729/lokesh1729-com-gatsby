@@ -21,7 +21,11 @@ module.exports = {
     },
     {
       label: 'Contact me',
-      path: '/pages/contacts'
+      path: '/pages/contact'
+    },
+    {
+      label: 'Resume',
+      path: '/pages/resume'
     }
   ],
   author: {
@@ -30,9 +34,9 @@ module.exports = {
     bio: ' Lokesh Sanapalli is a software engineer who loves to solve real world problems using software engineering',
     contacts: {
       email: 'hi@lokesh1729.com',
-      facebook: 'lokeshl729',
+      facebook: '',
       telegram: '+918466905904',
-      twitter: 'pylokesh',
+      twitter: 'LSanapalli',
       github: 'lokesh1729',
       linkedin: 'lokesh1729',
       instagram: 'slokesh1729',

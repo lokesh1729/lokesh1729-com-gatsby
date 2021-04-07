@@ -3,7 +3,7 @@
 module.exports = {
   url: 'https://lokesh1729.com',
   pathPrefix: '/',
-  title: 'Blog by Lokesh Sanapalli',
+  title: 'Lokesh Sanapalli - software engineer',
   subtitle: 'Hello World!',
   copyright: '© All rights reserved.',
   disqusShortname: 'lokesh1729',

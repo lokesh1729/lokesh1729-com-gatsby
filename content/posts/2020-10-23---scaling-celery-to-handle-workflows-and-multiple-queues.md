@@ -2,7 +2,7 @@
 template: post
 title: Scaling Celery to handle workflows and multiple queues
 slug: scaling-celery-to-handle-workflows-and-multiple-queues
-socialImage: /media/image-2.jpg
+socialImage: /media/scaling-celery.png
 draft: false
 date: 2020-10-23
 description: Celery is an asynchronous task queue to execute tasks concurrently.
@@ -14,6 +14,7 @@ tags:
   - django
   - celery
 ---
+![banner representing celery logo](/media/scaling-celery.png)
 
 Celery is an asynchronous task queue which integrates nicely with [django](https://www.djangoproject.com/). In this post, I am not going to write a tutorial on how to setup and use celery, there are many articles for it already. I am going to discuss about some of the advanced features of celery I used in some of the projects that I worked on.
 

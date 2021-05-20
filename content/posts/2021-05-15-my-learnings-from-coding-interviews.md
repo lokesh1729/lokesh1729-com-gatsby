@@ -5,7 +5,8 @@ slug: my-learnings-from-coding-interviews
 socialImage: /media/coding-interviews.png
 draft: true
 date: 2021-05-15T16:06:33.185Z
-description: description to be filled later
+description: In this post, I share some tips about cracking coding interviews
+  and add my experiences to it.
 category: coding interviews
 tags:
   - coding
@@ -17,7 +18,7 @@ Note: assume that the interviews are given to top product based companies and co
 
 1. **Bad interviewers**
 
-   Sometimes you may encounter bad interviewers, they may make you feel nervous ending up you bombing the interview. I faced the similar situation in a interview which ended in rejected status. You should take the responsibility to make the interview like an interactive session not like an interrogation. Few interviewers may not introduce themselves, they directly ask about you and jump into coding problems which may make you nervous. You should stop and ask them about their introduction, which team they belong to etc. This sets the ambience of the interview.
+   Sometimes you may encounter bad interviewers, they may make you feel nervous ending up you bombing the interview. I faced the similar situation in a interview which ended in rejected status. In such cases, you should take the responsibility to make the interview look like an interactive session not like an interrogation. Few interviewers may not introduce themselves, they directly ask about you and jump into coding problems which may make you nervous. You should stop and ask them about their introduction, which team they belong to etc. This sets the atmosphere of the interview.
 2. **Do not solve the leetcode problems partially during the preparation**
 
    When you are preparing do not solve any problem partially. Solve them completely until you understand it. I was solving this [problem](https://leetcode.com/problems/longest-substring-without-repeating-characters/) few days back before it appeared in the real interview. I had solved it but i still had confusions about the approach. I did not clear them up before, so i screwed it in the interview. So, do not take the leetcode problems lightly when you're preparing. When solving a question, think of it as it is asked in the real interview.\
@@ -29,7 +30,7 @@ Note: assume that the interviews are given to top product based companies and co
    3. Once you understand it, try writing the solution without taking help/hints. This is the time which tells you whether you have understood the solution correctly.
 3. **Revise the leetcode problems**
 
-   It happens to all of us that you solve a problem today and after few days you try to solve it again, but not able to. You get upset and lose the motivation. Remember, it happens to everyone and it is quite common. The only way to get confident is practice. Nothing beats practice. The more you practice the more you understand. Prepare a excel sheet of problems that you are afraid of and revisit them often.
+   It happens to all of us that you solve a problem today and after few days you try to solve it again, but not able to. You get upset and lose the motivation. Remember, it happens to everyone and it is quite common. The only way to become confident is practice. Nothing beats practice. The more you practice the more you understand. Prepare a excel sheet of problems that you are afraid of and revisit them often.
 4. **Interview is a race between you and time**
 
    Interviewer gives you a question and the timer starts. You need to solve it in the stipulated time. Let's see what you can do to pass the interview.
@@ -40,8 +41,8 @@ Note: assume that the interviews are given to top product based companies and co
 
    **Write down your thought process** - This will help you build the thought process and drives you towards the solution. Personally, it helped me very much. There are problems I have not seen before and not confident of solving but able to solve with this approach.
 
-   **Set a timer** - This approach has pros and cons depends on how we use. Use it in a way to divide your time for problem analysis and explanation, then for coding. Set a timer when interviewer is asking the question. Timer helps you how much time you had spent on analysing the problem thereby reduces your anxiety
+   **Set a timer** - This approach has pros and cons depends on how we use. Use it in a way to divide your time for problem analysis and explanation, then for coding. Set a timer when interviewer is asking the question. Timer helps you how much time you had spent on analyzing the problem thereby reduces your anxiety.
 5. **Don't put multiple interviews on the same day** - If you did not perform well in one interview, it'll affect the other. You will not have time to re-motivate. Put at least 2 days gap between two interviews. Also, in each interview you have to tell the same introduction, about the projects which will make you feel bore.
-6. **The more you fail, the more you learn** - Failing in interviews is very common. It's not like your board exams. There will be so many factors affecting it. I know how it feels, almost like a heart-break. One big disadvantage is the recruiters won't tell you the exact reason why you're rejected. They give you some false-polished-canned responses. You feel bad because you set high expectations on you. Try to lower the expectations. Get rejected a lot so that you get used to it.
+6. **The more you fail, the more you learn** - Failing in interviews is very common. It's not like your board/college exams. There will be so many factors affecting it. I know how it feels, almost like a heart-break. One big disadvantage is the recruiters won't tell you the exact reason why you're rejected. They give you some false-polished-canned responses. You feel bad because you set high expectations on you. Try to lower the expectations. One tip, I can give to overcome this is "get rejected a lot so that you get used to it" .
 7. **Be yourself** - don't try to impress the interviewer. Just be confident and be yourself, you don't need to look like an intellectual to pass the interview.
 8. **Problem solving is a lifestyle** - In my opinion, problem solving should become your way of living life. It should embed in your lifestyle. Be it a software engineering problem, DSA problem or anything related to life, should look at it as a problem and find an optimal solution. This kind of mindset really helped me in my life especially.

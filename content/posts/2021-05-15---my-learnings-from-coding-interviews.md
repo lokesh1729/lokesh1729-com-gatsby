@@ -3,7 +3,7 @@ template: post
 title: My learnings from coding interviews
 slug: my-learnings-from-coding-interviews
 socialImage: /media/coding-interviews.png
-draft: true
+draft: false
 date: 2021-05-15T16:06:33.185Z
 description: In this post, I share some tips about cracking coding interviews
   and add my experiences to it.

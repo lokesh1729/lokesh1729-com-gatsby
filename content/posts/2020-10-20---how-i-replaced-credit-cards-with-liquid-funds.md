@@ -9,11 +9,12 @@ description: I personally feel credit cards are a trap. I myself is a victim of
   the trap in the past. I paid hell lot of interest for credit cards. In this
   post, I blog about my experience with credit cards and how I replaced them
   with liquid mutual funds.
-category: Personal
+category: personal
 tags:
-  - Finance
-  - Tips
+  - finance
+  - tips
 ---
+![banner showing credit card and mutual fund](/media/replace-credit-cards-with-mutual-funds.png)
 
 This post is about personal finance and mostly suitable for people who live in India. Many of us (including me in the past) are using credit cards. There are pros and cons of using them. For me, I had bad experience using them. The reasons are
 

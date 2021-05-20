@@ -1,15 +1,18 @@
 ---
 template: post
-title: "How I replaced credit cards with liquid mutual funds"
-date: 2020-10-20
+title: How I replaced credit cards with liquid mutual funds
+slug: replaced-credit-cards-with-liquid-mutual-funds
+socialImage: /media/replace-credit-cards-with-mutual-funds.png
 draft: false
-slug: "replaced-credit-cards-with-liquid-mutual-funds"
-category: "Personal"
+date: 2020-10-20
+description: I personally feel credit cards are a trap. I myself is a victim of
+  the trap in the past. I paid hell lot of interest for credit cards. In this
+  post, I blog about my experience with credit cards and how I replaced them
+  with liquid mutual funds.
+category: Personal
 tags:
-  - "Finance"
-  - "Tips"
-description: "I personally feel credit cards are a trap. I myself is a victim of the trap in the past. I paid hell lot of interest for credit cards. In this post, I blog about my experience with credit cards and how I replaced them with liquid mutual funds."
-socialImage: "/media/image-2.jpg"
+  - Finance
+  - Tips
 ---
 
 This post is about personal finance and mostly suitable for people who live in India. Many of us (including me in the past) are using credit cards. There are pros and cons of using them. For me, I had bad experience using them. The reasons are

@@ -1,6 +1,6 @@
 ---
 template: post
-title: My learnings from coding interviews
+title: My learnings from coding interviews (2021)
 slug: my-learnings-from-coding-interviews
 socialImage: /media/coding-interviews.png
 draft: false
@@ -12,7 +12,7 @@ tags:
   - coding
   - interviews
 ---
-![Coding interviews image](/media/coding-interviews.png)
+![banner representing coding interviews](/media/coding-interviews.png)
 
 Being a software developer, you want to work on large scale systems that serves thousands to millions of users. Not everyone gets this chance, only few lucky chaps gets it. The other people try to get into such companies. **The hard truth is it's not the company that matters most, it's the team that you're part of is very important**. To get into such teams, you need to raise their bar. So, you need to pull up your socks, come out of your comfort zone and start preparing for interviews. In this post, I will share my learnings from the past experiences. 
 

@@ -2,7 +2,7 @@
 template: post
 title: My learnings from coding interviews
 slug: my-learnings-from-coding-interviews
-socialImage: https://www.yourdevopsguy.com/wp-content/uploads/2020/12/hesder-1200x720.jpg
+socialImage: /media/coding-interviews.png
 draft: true
 date: 2021-05-15T16:06:33.185Z
 description: description to be filled later

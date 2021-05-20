@@ -1,6 +1,6 @@
 ---
 template: post
-title: My experience of cracking coding interviews
+title: My experience of cracking coding interviews (2018)
 slug: cracking-coding-interviews
 socialImage: /media/coding-interviews.png
 draft: false
@@ -14,8 +14,11 @@ tags:
   - Coding Interviews
   - Software Engineering
 ---
+![banner representing coding interviews](/media/coding-interviews.png)
 
-Hey there! This is my first post and am very happy that it's about my favorite topic "Coding Interviews". Let's go on to the topic. Are the coding interviews easy ? No, they are not easy. You need constant dedication and hard-work to master it. In this post I will explain about my journey, lessons learnt and key take aways.
+Landing at a dream job in a product based company requires to crack coding interviews. One may not succeed in one interview, rejections may happen. But, key thing is to learn from the failure and keep moving on. In this post, I am gonna blog about my experience of failed coding interviews.
+
+Are the coding interviews easy ? No, they are not easy. You need constant dedication and hard-work to master it. In this post I will explain about my journey, lessons learnt and key take aways.
 
 #### Fear and Struggle
 

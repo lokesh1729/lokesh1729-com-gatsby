@@ -5,8 +5,10 @@ slug: my-learnings-from-coding-interviews
 socialImage: /media/coding-interviews.png
 draft: false
 date: 2021-05-15T16:06:33.185Z
-description: In this post, I share some tips about cracking coding interviews
-  and add my experiences to it.
+description: As a software engineer, you explore different career opportunities,
+  wants to work with great teams. In order to land at a job, you need to crack
+  the interviews. In this post, I go in depth of coding interviews and explain
+  how to crack them.
 category: coding interviews
 tags:
   - coding

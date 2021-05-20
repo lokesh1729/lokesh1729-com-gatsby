@@ -12,6 +12,8 @@ tags:
   - coding
   - interviews
 ---
+![Coding interviews image](/media/coding-interviews.png)
+
 Being a software developer, you want to work on large scale systems that serves thousands to millions of users. Not everyone gets this chance, only few lucky chaps gets it. The other people try to get into such companies. **The hard truth is it's not the company that matters most, it's the team that you're part of is very important**. To get into such teams, you need to raise their bar. So, you need to pull up your socks, come out of your comfort zone and start preparing for interviews. In this post, I will share my learnings from the past experiences. 
 
 Note: assume that the interviews are given to top product based companies and consists of 2 DS algo rounds + 1 or 2 system design + 1 manager/vp/director of engineering round + 1 behavioral + 1 HR/final discussion. In DS & algo rounds, the questions are mostly from leetcode.

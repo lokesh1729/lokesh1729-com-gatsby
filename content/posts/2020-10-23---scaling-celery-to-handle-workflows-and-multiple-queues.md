@@ -67,6 +67,7 @@ def cron_to_update_product(products):
 
 There's one key point to note here, the function `update_status_through_callback` should take `grouped_result` as a first argument. `grouped_result` will be a list of return values of all the grouped tasks. 
 For example, there are 5 group tasks ran and 3 of them are failed. Then the `grouped_result` will look like this
+
 ```python
 [
     {"status": False, "message": "error in updating"},
@@ -92,13 +93,14 @@ def update_status_through_callback(grouped_result):
                }
     return {"status": True, "message": "updated status"}
 ```
+
 In the first line of the function, we're checking if all the group tasks are successfully executed because we should only update the status if all products are updated.
 
 ### Task Routing
 
-We all run celery with a simple command like this `celery worker -A proj_name`. Running only one worker scales when the project has less number of tasks. But, consider the same scenario you're working on an e-commerce project, you want to run different types of reports. If all the tasks related to reports go to the same queue, it will not scale well. So, the scalable solution for it is to create separate queues for each report type.
+We all run celery with a simple command like this `celery worker -A proj_name`. Running only one worker scales when the project has less number of tasks. But, consider the same scenario you're working on an e-commerce project, you want to run different types of reports. Assume you are running only one queue and few reports take lot of time (name them \`long_running_tasks\`) and few take less time (name them \`short_running_tasks\`). Assume when you get lot of \`long_running_tasks\` which makes queue fill up and \`short_running_tasks\` has to wait till they finishes. This may not scale well. So, the scalable solution for it is to create separate queues for each report type. But this approach also has a problem. If there are no tasks for a specific report type running those queues is a waste of resource. So, it's a trade-off whether to go with first or second approach depending upon the business use-case.
 
-You need to use this celery configuration
+For running multiple queues based on report type, you need to use this celery configuration
 
 ```python
 CELERY_BROKER_URL = "redis://localhost:6379" # if your broker
@@ -142,9 +144,10 @@ celery worker -A proj_name -O fair -Q {queue_name}
  -P gevent --autoscale=32,16 --loglevel=INFO 
  --logfile={queue_name}_celery.log
 ```
+
 repeat above command for all the queues we defined.
 
-#### Tip : 
+#### Tip :
 
 instead of running many commands, use `celery multi` utility. Examples are given [here](https://docs.celeryproject.org/en/stable/reference/celery.bin.multi.html)
 
@@ -163,12 +166,10 @@ That's it! When you're running tasks they'll be routed to the respective queues.
 2. Use `gevent` or `eventlet` if your tasks are I/O bound and use `prefork` if it is CPU bound.
 3. Use `-O fair` for better scheduling.
 
-
-
 ### References
 
-Celery Routing Tasks : [https://docs.celeryproject.org/en/stable/userguide/routing.html](https://docs.celeryproject.org/en/stable/userguide/routing.html)
+Celery Routing Tasks : <https://docs.celeryproject.org/en/stable/userguide/routing.html>
 
-Running Workers : [https://docs.celeryproject.org/en/stable/userguide/workers.html](https://docs.celeryproject.org/en/stable/userguide/workers.html)
+Running Workers : <https://docs.celeryproject.org/en/stable/userguide/workers.html>
 
-Celery Worker Pools : [https://www.distributedpython.com/2018/10/26/celery-execution-pool/](https://www.distributedpython.com/2018/10/26/celery-execution-pool/)
+Celery Worker Pools : <https://www.distributedpython.com/2018/10/26/celery-execution-pool/>

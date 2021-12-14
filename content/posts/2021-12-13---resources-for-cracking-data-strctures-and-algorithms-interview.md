@@ -3,7 +3,7 @@ template: post
 title: Resources for cracking data strctures and algorithms interview
 slug: resources-for-cracking-data-structures-algorithms-interview
 socialImage: /media/resources-for-cracking-data-strctures-and-algorithms-interview.png
-draft: true
+draft: false
 date: 2021-12-13T09:45:38.356Z
 description: Cracking tech interviews is hard. Many companies conduct the first
   round as a coding round or send a hackerrank / hackerearth / codility test.

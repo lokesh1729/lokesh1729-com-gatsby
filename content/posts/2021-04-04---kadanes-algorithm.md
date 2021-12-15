@@ -8,10 +8,11 @@ date: 2021-04-04T06:26:11.924Z
 description: "kadane's algorithm aims to find maximum sub-array sum. In this
   post, we will discuss about it and we'll solve best time to buy and sell
   stocks leetcode problem #121 using it."
-category: coding
+category: data structures and algorithms
 tags:
   - algorithms
-  - coding interviews
+  - coding-interviews
+  - data-structures
 ---
 Hello everyone! in this post, we'll discuss about kadane's algorithm. I'll try to keep it as simple as possible. The goal of this algorithm is to find a maximum value of sub-array sum. Let's take an example to understand.
 

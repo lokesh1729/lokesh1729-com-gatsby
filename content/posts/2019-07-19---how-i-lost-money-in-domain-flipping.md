@@ -1,18 +1,20 @@
 ---
 template: post
 title: My bitter experience in domaing flipping
-slug: domain-flipping
+slug: my-experience-in-domain-flipping
 socialImage: /media/domain-flipping.png
 draft: false
 date: 2019-07-19
 description: Greediness is a very dangerous in domain flipping. One should not
-  expect high returns in less number of time. It takes number of years to get
-  succeed in domain flipping. In this post, I discuss how I burnt my hands in
-  domain flipping.
-category: personal
+  expect high returns in less time. It takes a number of years to get succeed in
+  domain flipping. In this post, I discuss how I burnt my hands in domain
+  flipping.
+category: domain flipping
 tags:
-  - tips
   - domains
+  - domain-flipping
+  - business
+  - online-business
 ---
 
 ![banner representing domain flipping](/media/domain-flipping.png)

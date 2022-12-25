@@ -3,7 +3,7 @@ template: post
 title: Kafka Internals - Learn kafka in-depth (Part-1)
 slug: kafka-internals-learn-kafka-in-depth
 socialImage: /media/learn-kafka-in-depth.png
-draft: true
+draft: false
 date: 2022-02-20T03:23:36.300Z
 description: As part of the Kafka internals series, in this post, I'll be
   writing a brief introduction to Kafka fundamentals, common jargon and basic

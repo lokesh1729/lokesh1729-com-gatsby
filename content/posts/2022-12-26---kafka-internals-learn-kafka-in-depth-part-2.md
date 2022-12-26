@@ -54,7 +54,7 @@ $ bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic paymen
 > hey there!
 ```
 
-We produced four messages to the topic. Let's see how they are stored in the filesystem. It's hard to find to which partition a message went to. The simple trick is to find the size of all partitions (directories) and pick the largest ones.
+We produced four messages to the topic. Let's see how they are stored in the filesystem. It's hard to find out to which partition a message went to because kafka uses round-robbin algorithm to distribute the data to the partitions. The simple way is to find the size of all partitions (directories) and pick the largest ones.
 
 ```shell
 $ cd /tmp/kafka-logs
@@ -94,6 +94,63 @@ $ cat 00000000000000000000.index
 $ cat 00000000000000000000.timeindex
 ```
 
+### Partition Metadata
+
+`parition.metadata` file contains `version` and a `topic_id`. This topic id is same for all the partitions.
+
 ### Log file
 
-This is where the data written by the producers are stored in a binary format.
+This is where the data written by the producers are stored in a binary format. Let's try to view the contents of these files using command-line tools provided by kafka.
+
+```shell
+$ bin/kafka-dump-log.sh --files data/kafka/payments-7/00000000000000000000.log,data/kafka/payments-7/00000000000000000000.index --print-data-log
+
+Dumping data/kafka/payments-7/00000000000000000000.log
+Starting offset: 0
+baseOffset: 0 lastOffset: 0 count: 1 baseSequence: -1 lastSequence: -1 producerId: -1
+producerEpoch: -1 partitionLeaderEpoch: 0 isTransactional: false isControl: false position: 0
+CreateTime: 1672041637310 size: 73 magic: 2 compresscodec: none crc: 456919687 isvalid: true | offset: 0
+CreateTime: 1672041637310 keySize: -1 valueSize: 5 sequence: -1 headerKeys: [] payload: world
+```
+
+The explanation of the above output is self-explanatory except for a few properties. `payload` is the actual data that was pushed to kafka. `offset` tells how far the current message is from zero index. `producerId` and `produerEpoch` are used in delivery guarantee semantics. We will discuss about this in later blog posts.
+
+We will learn about `.index` and `.timeindex` files soon.
+
+### Partition Key
+
+We learnt that kafka distributes data in a round-robbin fashion to the partitions. But, what if we want to send data grouped by a key? that's where partition key comes in. When we send data along with a partition key, kafka puts them in a single partition. What is the usecase of partition key? Kafka guarantees the ordering of messages only at a partition level not at a topic level. The application of partition key is to ensure the ordering of the messages across all partitions.
+
+Let's see how this works under the hood. Let's produce some messages.
+
+```shell
+$ bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic payments --property parse.key=true --property key.separator=\|
+> lokesh1729|{"message": "lokesh1729 : order placed"}
+> lokesh1729|{"message": "lokeh1729 : logged in"}
+> lokesh1729|{"message": "lokesh1729 : logged out"}
+> lokesh1729|{"message": "lokesh1729 : payment success"}
+```
+
+Let's look at the data using the same `kafka-dump-log` command. We need to find the partition by executing the command in all 10 partitions because we don't know to which partition it went to.
+
+```
+baseOffset: 2 lastOffset: 2 count: 1 baseSequence: -1 lastSequence: -1 producerId: -1 producerEpoch: -1 partitionLeaderEpoch: 0
+isTransactional: false isControl: false position: 147 CreateTime: 1672057287522 size: 118 magic: 2 compresscodec: none crc: 2961270358
+isvalid: true | offset: 2 CreateTime: 1672057287522 keySize: 10 valueSize: 40 sequence: -1 headerKeys: [] key: lokesh1729
+payload: {"message": "lokesh1729 : order placed"}
+
+baseOffset: 3 lastOffset: 3 count: 1 baseSequence: -1 lastSequence: -1 producerId: -1 producerEpoch: -1 partitionLeaderEpoch: 0
+isTransactional: false isControl: false position: 265 CreateTime: 1672057301944 size: 114 magic: 2 compresscodec: none crc: 204260463
+isvalid: true | offset: 3 CreateTime: 1672057301944 keySize: 10 valueSize: 36 sequence: -1 headerKeys: [] key: lokesh1729
+payload: {"message": "lokeh1729 : logged in"}
+
+baseOffset: 4 lastOffset: 4 count: 1 baseSequence: -1 lastSequence: -1 producerId: -1 producerEpoch: -1 partitionLeaderEpoch: 0
+isTransactional: false isControl: false position: 379 CreateTime: 1672057311110 size: 116 magic: 2 compresscodec: none crc: 419761401
+isvalid: true | offset: 4 CreateTime: 1672057311110 keySize: 10 valueSize: 38 sequence: -1 headerKeys: [] key: lokesh1729 payload: {"message": "lokesh1729 : logged out"}
+
+baseOffset: 5 lastOffset: 5 count: 1 baseSequence: -1 lastSequence: -1 producerId: -1 producerEpoch: -1 partitionLeaderEpoch: 0
+isTransactional: false isControl: false position: 495 CreateTime: 1672057327354 size: 121 magic: 2 compresscodec: none crc: 177029556
+isvalid: true | offset: 5 CreateTime: 1672057327354 keySize: 10 valueSize: 43 sequence: -1 headerKeys: [] key: lokesh1729 payload: {"message": "lokesh1729 : payment success"}
+```
+
+As we see from above log, all the messages with key `lokesh1729` are went to the same partition i.e. partition 7

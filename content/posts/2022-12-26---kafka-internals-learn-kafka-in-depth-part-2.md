@@ -15,9 +15,13 @@ tags:
   - distributed-systems
   - system-design
 ---
-# Basic Setup
+# Introduction
 
-Let's get started by installing kafka. [Download](https://www.apache.org/dyn/closer.cgi?path=/kafka/3.3.1/kafka_2.13-3.3.1.tgz) the latest Kafka release and extract it. Open terminal and start the kafka.
+[In my previous blog post](https://lokesh1729.com/posts/kafka-internals-learn-kafka-in-depth), we learnt the basics of kafka and covered key concepts. If you haven't read, it is a pre-requisite, please read it. In this blog post, we will deep dive into the internals of kafka and learn how kafka works under the hood. At the end of the blog post, your perspective about kafka will change and you feel kafka is not complex than what you think.
+
+## Basic Setup
+
+Let's get started by installing kafka. [Download](https://www.apache.org/dyn/closer.cgi?path=/kafka/3.3.1/kafka_2.13-3.3.1.tgz) the latest Kafka release and extract it. Open terminal and start kafka and zookeeper.
 
 ```shell
 $ cd $HOME
@@ -26,10 +30,17 @@ $ cd kafka_<version>
 $ bin/zookeeper-server-start.sh config/zookeeper.properties
 # open another terminal session and start kafka
 $ bin/kafka-server-start.sh config/server.properties
+```
+
+Let's create a topic in a new terminal tab.
+
+```shell
 # Open another terminal and create a topic.
 $ bin/kafka-topics.sh --create --topic payments --partitions 10 --replication-factor 1 \
  --bootstrap-server localhost:9092
 ```
+
+> If you are wondering how the above command is constructed with those arguments, it's very simple. Just do, `bin/kafka-topics.sh --help` you will see all the arguments with description. It's the same case with all the shell utilities present in `bin` folder.
 
 Now let's see what happens under the hood. 
 
@@ -43,7 +54,7 @@ meta.properties                  payments-2    payments-5    payments-8     repl
 
 > `/tmp/kafka-logs` is the default directory where kafka stores the data. We can configure it to a different directory in `config/server.properties` for kafka and `config/zookeeper.properties` for zookeeper.
 
-As we see from the above result, `payments-0` , `payments-1` .... `payments-10` are the partitions which are nothing but the directories in the filesystem. Topic is just a logical concept in kafka. It does not exist physically, only partitions does.
+As we see from the above result, `payments-0` , `payments-1` .... `payments-10` are the partitions which are nothing but the directories in the filesystem. As I highlighted in my previous blog post, topic is a logical concept in kafka. It does not exist physically, only partitions does. A topic is logical grouping of all partitions.
 
 # Producer
 
@@ -75,7 +86,7 @@ $ du -hs *
  12K	payments-9
 ```
 
-As we see from the above snippet, our messages went to partition 2, 4, 7 & 9. Let's see what's inside each of the partition.
+As we see from the above snippet, our messages went to the partition 2, 4, 7 & 9. Let's see what's inside each of the partition.
 
 ```shell
 $ ls payments-7
@@ -117,9 +128,7 @@ CreateTime: 1672041637310 size: 73 magic: 2 compresscodec: none crc: 456919687 i
 CreateTime: 1672041637310 keySize: -1 valueSize: 5 sequence: -1 headerKeys: [] payload: world
 ```
 
-The explanation of the above output is self-explanatory except for a few properties. `payload` is the actual data that was pushed to kafka. `offset` tells how far the current message is from zero index. `producerId` and `produerEpoch` are used in delivery guarantee semantics. We will discuss about this in later blog posts.
-
-We will learn about `.index` and `.timeindex` files soon.
+The explanation of the above output is self-explanatory except for a few properties. `payload` is the actual data that was pushed to kafka. `offset` tells how far the current message is from zero index. `producerId` and `produerEpoch` are used in delivery guarantee semantics. We will discuss about them in the later blog posts. We will learn about `.index` and `.timeindex` files below.
 
 ## Partition Key
 
@@ -162,6 +171,8 @@ isvalid: true | offset: 5 CreateTime: 1672057327354 keySize: 10 valueSize: 43 se
 ```
 
 As we see from above log, all the messages with key `lokesh1729` are went to the same partition i.e. partition 7.
+
+Let's produce more messages with this script.
 
 # Consumer
 

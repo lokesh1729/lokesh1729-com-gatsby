@@ -8,11 +8,12 @@ date: 2020-10-23
 description: Celery is an asynchronous task queue to execute tasks concurrently.
   As the project grows, scaling celery is a tedious task. In this post, I
   discuss about how to design workflows with celery and how to scale it.
-category: celery
+category: software engineering
 tags:
-  - celery
+  - software-engineering
   - distributed-systems
   - messaging-queues
+  - celery
 ---
 ![banner representing celery logo](/media/scaling-celery.png)
 

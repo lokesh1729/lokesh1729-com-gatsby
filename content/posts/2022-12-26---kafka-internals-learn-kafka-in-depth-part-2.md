@@ -17,7 +17,7 @@ tags:
 ---
 ## Introduction
 
-[In my previous blog post](https://lokesh1729.com/posts/kafka-internals-learn-kafka-in-depth), we learned the basics of kafka and covered vital concepts. If you haven't read it, it is a prerequisite, please read it. In this blog post, we will deep dive into the internals of kafka and learn how kafka works under the hood. At the end of the blog post, your perspective about kafka will change that you feel kafka is not complex as you think.
+[In my previous blog post](https://lokesh1729.com/posts/kafka-internals-learn-kafka-in-depth), we learned the basics of kafka and covered vital concepts. If you haven't read it, it is a prerequisite, please read it. In this blog post, we will deep dive into the internals of kafka and learn how kafka works under the hood. At the end of the blog post, your perspective about kafka will change so that you feel kafka is not complex as you think.
 
 ### Basic Setup
 
@@ -267,6 +267,42 @@ As we see from the above image, the consumer polls for the records and commits t
 When a consumer is committing the offset, it sends the topic name, partition & offset information. Then, the broker uses it to construct the key as `<consumer_group_name>, <topic>, <partition>` and value as `<offset>,<partition_leader_epoch>,<metadata>,<timestamp>` and store it in the `__consumer_offsets` topic.
 
 When the consumer is crashed or restarted, it sends the request to the kafka broker and the broker finds the partition in `__consumer_offsets` by doing `hash(<consumer_group_name>, <topic>, <partition> ) % 50` and fetches the latest offset and returns it to the consumer.
+
+## Disk I/O Optimization
+
+Kafka uses the hard disk as its primary data store. We know that disk I/O is slow compared to the main memory. So, we may wonder how kafka is achieving low latency at high throughput. Let's dive into it.
+
+1. [Sequential disk reads can be faster than random memory access.](https://kafka.apache.org/documentation/#design_filesystem) Modern operating systems provide capabilities to read data from disk in multiple blocks.
+
+2. Modern operating systems use free main memory for disk caching and divert disk I/O through this cache.
+
+3. Relying on the disk cache is more optimal than the main memory because the disk cache stays warm even if the service had crashed or restarted.
+
+4. Kafka uses index files for faster access. We discussed them above already.
+
+5. Kafka batches disk writes.
+
+Below is a sample log from the `.log` file. Let's dissect it.
+
+`baseOffset` - the starting offset to start with
+
+`lastOffset` - self-explanatory
+
+`count` - the total number of messages in the batch
+
+`CreateTime` - the epoch timestamp of created date
+
+`size` - total size of the messages in the batch in bytes
+
+
+
+```
+baseOffset: 1992 lastOffset: 1995 count: 4 baseSequence: -1 lastSequence: -1 producerId: -1 producerEpoch: -1 partitionLeaderEpoch: 0 isTransactional: false isControl: false position: 260309 CreateTime: 1672131859025 size: 474 magic: 2 compresscodec: none crc: 36982599 isvalid: true
+| offset: 1992 CreateTime: 1672131859022 keySize: 12 valueSize: 84 sequence: -1 headerKeys: [] key: craigpearson payload: {"username": "craigpearson", "address": "0414 Fischer Rest\nZacharyshire, MN 38196"}
+| offset: 1993 CreateTime: 1672131859024 keySize: 11 valueSize: 80 sequence: -1 headerKeys: [] key: gregoryjoel payload: {"username": "gregoryjoel", "address": "827 Nelson Burg\nSherrimouth, OK 49255"}
+| offset: 1994 CreateTime: 1672131859025 keySize: 11 valueSize: 83 sequence: -1 headerKeys: [] key: gregoryjoel payload: {"username": "gregoryjoel", "address": "8306 Reed Trail\nFitzgeraldstad, PA 18715"}
+| offset: 1995 CreateTime: 1672131859025 keySize: 12 valueSize: 84 sequence: -1 headerKeys: [] key: craigpearson payload: {"username": "craigpearson", "address": "0533 Crystal Forks\nJasminefort, NV 54576"}
+```
 
 
 

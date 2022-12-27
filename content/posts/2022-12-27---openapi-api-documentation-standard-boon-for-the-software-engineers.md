@@ -3,8 +3,8 @@ template: post
 title: OpenAPI - API documentation standard - Boon for the software engineers
 slug: openapi-document-standard-boon-for-software-engineers
 socialImage: /media/openapi.png
-draft: true
-date: 2022-12-27T12:00:29.270Z
+draft: false
+date: 2022-11-28T12:00:29.270Z
 description: OpenAPI is a standard for API documentation. It acts as a bridge
   between backend and frontend systems. Using the OpenAPI specification file, we
   can generate beautiful UI using swagger or ReDoc.

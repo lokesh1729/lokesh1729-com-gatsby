@@ -17,7 +17,7 @@ tags:
 ---
 ## Introduction
 
-[In my previous blog post](https://lokesh1729.com/posts/kafka-internals-learn-kafka-in-depth), we learned the basics of kafka and covered vital concepts. If you haven't read it, it is a prerequisite, please read it. In this blog post, we will deep dive into the internals of kafka and learn how kafka works under the hood. At the end of the blog post, your perspective about kafka will change and you feel kafka is not complex as you think.
+[In my previous blog post](https://lokesh1729.com/posts/kafka-internals-learn-kafka-in-depth), we learned the basics of kafka and covered vital concepts. If you haven't read it, it is a prerequisite, please read it. In this blog post, we will deep dive into the internals of kafka and learn how kafka works under the hood. At the end of the blog post, your perspective about kafka will change that you feel kafka is not complex as you think.
 
 ### Basic Setup
 
@@ -268,6 +268,9 @@ When a consumer is committing the offset, it sends the topic name, partition & o
 
 When the consumer is crashed or restarted, it sends the request to the kafka broker and the broker finds the partition in `__consumer_offsets` by doing `hash(<consumer_group_name>, <topic>, <partition> ) % 50` and fetches the latest offset and returns it to the consumer.
 
+
+
 ## Bonus
 
 1. [Offset Explorer](https://www.kafkatool.com/download.html) - A useful tool to view topic and consumer information.
+2. [Kafka Docker images by Bitnami](https://hub.docker.com/r/bitnami/kafka)

@@ -42,7 +42,7 @@ $ bin/kafka-topics.sh --create --topic payments --partitions 10 --replication-fa
 
 > If you are wondering how the above command is constructed with those arguments, it's very simple. Just do, `bin/kafka-topics.sh --help` you will see all the arguments with descriptions. It's the same case with all the shell utilities present in `bin` folder.
 
-Now let's see what happens under the hood. 
+Now let's see what happens under the hood.
 
 Go to `/tmp/kafka-logs` directory and do `ls` we will see the below result.
 
@@ -55,6 +55,16 @@ meta.properties                  payments-2    payments-5    payments-8     repl
 > `/tmp/kafka-logs` is the default directory where kafka stores the data. We can configure it to a different directory in `config/server.properties` for kafka and `config/zookeeper.properties` for zookeeper.
 
 As we see from the above result, `payments-0`, `payments-1` .... `payments-10` are the partitions that are nothing but the directories in the filesystem. As I highlighted in my previous blog post, topic is a logical concept in kafka. It does not exist physically, only partitions do. A topic is a logical grouping of all partitions.
+
+### recovery-point-offset-checkpoint
+This file is used internally by the kafka broker to track the number of logs that are flushed to the disk. The format of the file is like this.
+```
+<version>
+<total entries>
+<topic name> <partition> offset
+```
+### replication-offset-checkpoint
+This file is used internally by the kafka broker to track the number of logs that are replicated to all the brokers in the cluster. The format of this file is the same as the `recovery-point-offset-checkpoint` file mentioned above.
 
 ## Producer
 

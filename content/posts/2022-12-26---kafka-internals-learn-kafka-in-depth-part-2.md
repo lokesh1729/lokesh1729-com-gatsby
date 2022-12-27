@@ -15,11 +15,11 @@ tags:
   - distributed-systems
   - system-design
 ---
-# Introduction
+## Introduction
 
-[In my previous blog post](https://lokesh1729.com/posts/kafka-internals-learn-kafka-in-depth), we learnt the basics of kafka and covered key concepts. If you haven't read, it is a pre-requisite, please read it. In this blog post, we will deep dive into the internals of kafka and learn how kafka works under the hood. At the end of the blog post, your perspective about kafka will change and you feel kafka is not complex than what you think.
+[In my previous blog post](https://lokesh1729.com/posts/kafka-internals-learn-kafka-in-depth), we learnt the basics of kafka and covered key concepts. If you haven't read, it is a per-requisite, please read it. In this blog post, we will deep dive into the internals of kafka and learn how kafka works under the hood. At the end of the blog post, your perspective about kafka will change and you feel kafka is not complex than what you think.
 
-## Basic Setup
+### Basic Setup
 
 Let's get started by installing kafka. [Download](https://www.apache.org/dyn/closer.cgi?path=/kafka/3.3.1/kafka_2.13-3.3.1.tgz) the latest Kafka release and extract it. Open terminal and start kafka and zookeeper.
 
@@ -56,7 +56,7 @@ meta.properties                  payments-2    payments-5    payments-8     repl
 
 As we see from the above result, `payments-0` , `payments-1` .... `payments-10` are the partitions which are nothing but the directories in the filesystem. As I highlighted in my previous blog post, topic is a logical concept in kafka. It does not exist physically, only partitions does. A topic is logical grouping of all partitions.
 
-# Producer
+## Producer
 
 Now, let's produce some messages to the topic using the below command.
 
@@ -109,11 +109,11 @@ $ cat 00000000000000000000.index
 $ cat 00000000000000000000.timeindex
 ```
 
-## Partition Metadata
+### Partition Metadata
 
 `parition.metadata` file contains `version` and a `topic_id`. This topic id is same for all the partitions.
 
-## Log file
+### Log file
 
 This is where the data written by the producers are stored in a binary format. Let's try to view the contents of these files using command-line tools provided by kafka.
 
@@ -130,7 +130,7 @@ CreateTime: 1672041637310 keySize: -1 valueSize: 5 sequence: -1 headerKeys: [] p
 
 The explanation of the above output is self-explanatory except for a few properties. `payload` is the actual data that was pushed to kafka. `offset` tells how far the current message is from zero index. `producerId` and `produerEpoch` are used in delivery guarantee semantics. We will discuss about them in the later blog posts. We will learn about `.index` and `.timeindex` files below.
 
-## Partition Key
+### Partition Key
 
 We learnt that kafka distributes data in a round-robbin fashion to the partitions. But, what if we want to send data grouped by a key? that's where partition key comes in. When we send data along with a partition key, kafka puts them in a single partition. How does kafka finds the partition key? it computes using `hash(partition_key) % number_of_partitions`. If no partition key is present, then it uses round-robbin algorithm.
 
@@ -150,7 +150,8 @@ $ bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic paymen
 
 Let's look at the data using the same `kafka-dump-log` command. We need to find the partition by executing the command in all 10 partitions because we don't know to which partition it went to.
 
-```
+```shell
+$ $ bin/kafka-dump-log.sh --files data/kafka/payments-7/00000000000000000000.log,data/kafka/payments-7/00000000000000000000.index --print-data-log
 baseOffset: 2 lastOffset: 2 count: 1 baseSequence: -1 lastSequence: -1 producerId: -1 producerEpoch: -1 partitionLeaderEpoch: 0
 isTransactional: false isControl: false position: 147 CreateTime: 1672057287522 size: 118 magic: 2 compresscodec: none crc: 2961270358
 isvalid: true | offset: 2 CreateTime: 1672057287522 keySize: 10 valueSize: 40 sequence: -1 headerKeys: [] key: lokesh1729
@@ -172,9 +173,58 @@ isvalid: true | offset: 5 CreateTime: 1672057327354 keySize: 10 valueSize: 43 se
 
 As we see from above log, all the messages with key `lokesh1729` are went to the same partition i.e. partition 7.
 
-Let's produce more messages with this script.
+### Index and Timeindex files
 
-# Consumer
+Let's produce more messages with this [script](https://gist.github.com/lokesh1729/977e146cab41b5001210810685b8c36d#file-producer-py) and dump the data using the above command. 
+
+```shell
+$ bin/kafka-dump-log.sh --files data/kafka/payments-8/00000000000000000000.log,data/kafka/payments-8/00000000000000000000.index --print-data-log
+Dumping data/kafka/payments-8/00000000000000000000.index
+offset: 33 position: 4482
+offset: 68 position: 9213
+offset: 100 position: 13572
+offset: 142 position: 18800
+offset: 175 position: 23042
+offset: 214 position: 27777
+offset: 248 position: 32165
+offset: 279 position: 36665
+offset: 313 position: 40872
+offset: 344 position: 45005
+offset: 389 position: 49849
+offset: 422 position: 54287
+offset: 448 position: 58402
+offset: 485 position: 62533
+```
+
+As we see from the above output, index file stores the offset and the position of it in the `.log` file so that if a consumer asks any arbitrary offset it simply does a binary search on `.index` file in `O(log n)` time and goes to the `.log` file and performs binary search again. Let's take an example, say if a consumer is reading 190th offset. Firstly, kafka broker reads the index file and performs binary search and either finds the exact offset or the closest to it. In this case, it finds offset as 175 and it's position as 23042. Then, it goes to the `.log` file and performs the binary search again since given the fact that `.log` file is append-only data structure stored in an ascending order of offsets.
+
+Now, let's look at the `.timeindex` file. Let's dump the file using the above command.
+```shell
+$ bin/kafka-dump-log.sh --files data/kafka/payments-8/00000000000000000000.timeindex --print-data-log
+
+Dumping data/kafka/payments-8/00000000000000000000.timeindex
+timestamp: 1672131856604 offset: 33
+timestamp: 1672131856661 offset: 68
+timestamp: 1672131856701 offset: 100
+timestamp: 1672131856738 offset: 142
+timestamp: 1672131856772 offset: 175
+timestamp: 1672131856816 offset: 213
+timestamp: 1672131856862 offset: 247
+timestamp: 1672131856901 offset: 279
+timestamp: 1672131856930 offset: 312
+timestamp: 1672131856981 offset: 344
+timestamp: 1672131857029 offset: 388
+timestamp: 1672131857076 offset: 419
+timestamp: 1672131857102 offset: 448
+timestamp: 1672131857147 offset: 484
+timestamp: 1672131857185 offset: 517
+timestamp: 1672131857239 offset: 547
+```
+As we see from the above result, `.timeindex` file stores the mapping between epoch timestamp and the offset in `.log` file. This will be useful when we want to replay the events from kafka.
+
+Why does these index files needed? As kafka relies on the disk to store the data, storing indexes reduces the latency.
+
+## Consumer
 
 Let's start the consumer using the below command
 
@@ -188,7 +238,7 @@ $ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic paymen
 
 > Note that `--from-beginning` argument is used to read from the starting. If not used, consumer reads the latest messages i.e. messages produced after the consumer is started.
 
-Now, let's take a look at the filesystem. We can observe that there will be new folders created with the name `__consumer_offsets-0` , `__consumer_offsets-1` .... __consumer_offsets-49. Kafka stores the state of each consumer offset in a topic called `__consumer_offsets` with a default partition size of 50. If we look at what's inside the folder, the same files will be present as in `payments` topic we have seen above.
+Now, let's take a look at the filesystem. We can observe that there will be new folders created with the name `__consumer_offsets-0` , `__consumer_offsets-1` .... **consumer_offsets-49. Kafka stores the state of each consumer offset in a topic called `**consumer_offsets`with a default partition size of 50. If we look at what's inside the folder, the same files will be present as in`payments` topic we have seen above.
 
 ![An image depicting the interaction between kafka broker and consumer](/media/kafka-consumer-offset.png "Interaction between kafka broker and consumer")
 
@@ -197,3 +247,7 @@ As we see from the above image, consumer polls for the records and commits the o
 When a consumer is committing the offset, it sends the topic name, partition & offset information. Then, the broker uses it to construct key as `<consumer_group_name>, <topic>, <partition>` and value as `<offset>,<partition_leader_epoch>,<metadata>,<timestamp>` and store it in the `__consumer_offsets` topic.
 
 When the consumer is crashed or restarted, it sends the request to the kafka broker and broker finds the partition in `__consumer_offsets` by doing `hash(<consumer_group_name>, <topic>, <partition> ) % 50` and fetches the latest offset and returns to the consumer.
+
+## Bonus
+
+1. [Offset Explorer](https://www.kafkatool.com/download.html) - A useful tool to view topic, consumer information.

@@ -15,11 +15,11 @@ tags:
   - system-design
   - distribute-systems
 ---
-# Introduction
+## Introduction
 
 Kafka had gained huge popularity for the past few years. In a microservices architecture, it plays a pivotal role. It enables data to move from one service to another. I'm starting this series to help beginners understand Kafka in-depth. But, before we go in-depth, it is important to understand some basics. So, in this post, we'll learn the basics and eventually, we'll go in-depth.
 
-# Basics
+## Basics
 
 "Kafka is a highly scalable, durable, fault-tolerant and distributed streaming platform." This is the definition we see from Kafka's official website. These jargons may frighten the newcomers. Let's learn the meaning of these first.
 
@@ -46,7 +46,7 @@ An event describes something that happened. For example, in an e-commerce system
 }
 ```
 
-## Basic Architecture
+## Architecture
 
 A producer is an entity that "sends" the data to Kafka. A consumer is an entity that "consumes" the data from Kafka. In Kafka, both these entities are loosely coupled. It means, the producer just produces irrespective of the consumer's existence. Similarly, the consumer's responsibility is to consume data from Kafka without depending on producers.
 
@@ -94,7 +94,7 @@ As the name says, a consumer group is nothing but a group of consumers. Each con
 
 ![kafka consumers.png](/media/kafka-consumers.png "image showing kafka consumer group")
 
-# Comparison with traditional pub-sub systems
+## Comparison with traditional pub-sub systems
 
 Also, If you are familiar with traditional pub-sub messaging systems like rabbitmq, you may find a few differences.
 

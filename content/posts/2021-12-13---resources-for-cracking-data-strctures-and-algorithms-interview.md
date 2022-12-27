@@ -10,9 +10,11 @@ description: Cracking tech interviews is hard. Many companies conduct the first
   These involve in data structures and algorithms. Cracking it is not easy. You
   need good understanding and practice. In this blog post, I'll share some of
   the useful resources for preparing for the interview.
-category: coding interviews
+category: software engineering
 tags:
-  - interviews
+  - software-engineering
+  - coding-interviews
+  - software-engineering-interviews
 ---
 Hello Everyone,
 

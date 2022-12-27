@@ -123,7 +123,9 @@ We will learn about `.index` and `.timeindex` files soon.
 
 ## Partition Key
 
-We learnt that kafka distributes data in a round-robbin fashion to the partitions. But, what if we want to send data grouped by a key? that's where partition key comes in. When we send data along with a partition key, kafka puts them in a single partition. What is the usecase of partition key? Kafka guarantees the ordering of messages only at a partition level not at a topic level. The application of partition key is to ensure the ordering of the messages across all partitions.
+We learnt that kafka distributes data in a round-robbin fashion to the partitions. But, what if we want to send data grouped by a key? that's where partition key comes in. When we send data along with a partition key, kafka puts them in a single partition. How does kafka finds the partition key? it computes using `hash(partition_key) % number_of_partitions`. If no partition key is present, then it uses round-robbin algorithm.
+
+We may wonder, what is the usecase of a partition key? Kafka guarantees the ordering of messages only at a partition level not at a topic level. The application of partition key is to ensure the ordering of the messages across all partitions.
 
 Let's see how this works under the hood. Let's produce some messages.
 
@@ -161,6 +163,26 @@ isvalid: true | offset: 5 CreateTime: 1672057327354 keySize: 10 valueSize: 43 se
 
 As we see from above log, all the messages with key `lokesh1729` are went to the same partition i.e. partition 7.
 
-
-
 # Consumer
+
+Let's start the consumer using the below command
+
+```shell
+$ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic payments --group payments-consumer --from-beginning
+{"message": "lokesh1729 : order placed"}
+{"message": "lokeh1729 : logged in"}
+{"message": "lokesh1729 : logged out"}
+{"message": "lokesh1729 : payment success"}
+```
+
+> Note that `--from-beginning` argument is used to read from the starting. If not used, consumer reads the latest messages i.e. messages produced after the consumer is started.
+
+Now, let's take a look at the filesystem. We can observe that there will be new folders created with the name `__consumer_offsets-0` , `__consumer_offsets-1` .... __consumer_offsets-49. Kafka stores the state of each consumer offset in a topic called `__consumer_offsets` with a default partition size of 50. If we look at what's inside the folder, the same files will be present as in `payments` topic we have seen above.
+
+![An image depicting the interaction between kafka broker and consumer](/media/kafka-consumer-offset.png "Interaction between kafka broker and consumer")
+
+As we see from the above image, consumer polls for the records and commits the offset whenever it's done processing. Kafka is flexible such that we can configure how many records to fetch in a single poll, auto committing interval etc... We will discuss all these configuration in a separate blog post.
+
+When a consumer is committing the offset, it sends the topic name, partition & offset information. Then, the broker uses it to construct key as `<consumer_group_name>, <topic>, <partition>` and value as `<offset>,<partition_leader_epoch>,<metadata>,<timestamp>` and store it in the `__consumer_offsets` topic.
+
+When the consumer is crashed or restarted, it sends the request to the kafka broker and broker finds the partition in `__consumer_offsets` by doing `hash(<consumer_group_name>, <topic>, <partition> ) % 50` and fetches the latest offset and returns to the consumer.

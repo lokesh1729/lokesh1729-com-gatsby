@@ -9,9 +9,11 @@ description: Landing at a dream job in a product based company requires to crack
   coding interviews. One may not succeed in one interview, rejections may
   happen. But, key thing is to learn from the failure and keep moving on. In
   this post, I am gonna blog about my experience of failed coding interviews.
-category: coding interviews
+category: software engineering
 tags:
+  - software-engineering
   - coding-interviews
+  - software-engineering-interviews
 ---
 ![banner representing coding interviews](/media/coding-interviews.png)
 

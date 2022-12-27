@@ -258,7 +258,7 @@ $ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic paymen
 
 > Note that `--from-beginning` argument is used to read from the start. If not used, the consumer reads the latest messages i.e. messages produced after the consumer is started.
 
-Now, let's take a look at the filesystem. We can observe that there will be new folders created with the name `__consumer_offsets-0`, `__consumer_offsets-1` .... **consumer_offsets-49. Kafka stores the state of each consumer offset in a topic called `**consumer_offsets`with a default partition size of 50. If we look at what's inside the folder, the same files will be present as in the`payments` topic we have seen above.
+Now, let's take a look at the filesystem. We can observe that there will be new folders created with the name `__consumer_offsets-0`, `__consumer_offsets-1` .... `__consumer_offsets-49`. Kafka stores the state of each consumer offset in a topic called `__consumer_offsets` with a default partition size of 50. If we look at what's inside the folder, the same files will be present as in the `payments` topic we have seen above.
 
 ![An image depicting the interaction between kafka broker and consumer](/media/kafka-consumer-offset.png "Interaction between kafka broker and consumer")
 

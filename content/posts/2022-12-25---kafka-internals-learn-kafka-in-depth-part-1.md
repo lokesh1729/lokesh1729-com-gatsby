@@ -10,10 +10,10 @@ description: As part of the Kafka internals series, in this post, I'll be
   architecture.
 category: software engineering
 tags:
-  - kafka
   - software-engineering
   - system-design
   - distribute-systems
+  - kafka
 ---
 ## Introduction
 

@@ -9,10 +9,11 @@ description: As a software engineer, you explore different career opportunities,
   wants to work with great teams. In order to land at a job, you need to crack
   the interviews. In this post, I go in depth of coding interviews and explain
   how to crack them.
-category: coding interviews
+category: software engineering
 tags:
-  - coding
-  - interviews
+  - software-engineering
+  - coding-interviews
+  - software-engineering-interviews
 ---
 ![banner representing coding interviews](/media/coding-interviews.png)
 

@@ -17,11 +17,11 @@ tags:
 ---
 ## Introduction
 
-[In my previous blog post](https://lokesh1729.com/posts/kafka-internals-learn-kafka-in-depth), we learnt the basics of kafka and covered key concepts. If you haven't read, it is a per-requisite, please read it. In this blog post, we will deep dive into the internals of kafka and learn how kafka works under the hood. At the end of the blog post, your perspective about kafka will change and you feel kafka is not complex than what you think.
+[In my previous blog post](https://lokesh1729.com/posts/kafka-internals-learn-kafka-in-depth), we learned the basics of kafka and covered vital concepts. If you haven't read it, it is a prerequisite, please read it. In this blog post, we will deep dive into the internals of kafka and learn how kafka works under the hood. At the end of the blog post, your perspective about kafka will change and you feel kafka is not complex as you think.
 
 ### Basic Setup
 
-Let's get started by installing kafka. [Download](https://www.apache.org/dyn/closer.cgi?path=/kafka/3.3.1/kafka_2.13-3.3.1.tgz) the latest Kafka release and extract it. Open terminal and start kafka and zookeeper.
+Let's get started by installing kafka. [Download](https://www.apache.org/dyn/closer.cgi?path=/kafka/3.3.1/kafka_2.13-3.3.1.tgz) the latest Kafka release and extract it. Open a terminal and start kafka and zookeeper.
 
 ```shell
 $ cd $HOME
@@ -40,7 +40,7 @@ $ bin/kafka-topics.sh --create --topic payments --partitions 10 --replication-fa
  --bootstrap-server localhost:9092
 ```
 
-> If you are wondering how the above command is constructed with those arguments, it's very simple. Just do, `bin/kafka-topics.sh --help` you will see all the arguments with description. It's the same case with all the shell utilities present in `bin` folder.
+> If you are wondering how the above command is constructed with those arguments, it's very simple. Just do, `bin/kafka-topics.sh --help` you will see all the arguments with descriptions. It's the same case with all the shell utilities present in `bin` folder.
 
 Now let's see what happens under the hood. 
 
@@ -54,7 +54,7 @@ meta.properties                  payments-2    payments-5    payments-8     repl
 
 > `/tmp/kafka-logs` is the default directory where kafka stores the data. We can configure it to a different directory in `config/server.properties` for kafka and `config/zookeeper.properties` for zookeeper.
 
-As we see from the above result, `payments-0` , `payments-1` .... `payments-10` are the partitions which are nothing but the directories in the filesystem. As I highlighted in my previous blog post, topic is a logical concept in kafka. It does not exist physically, only partitions does. A topic is logical grouping of all partitions.
+As we see from the above result, `payments-0`, `payments-1` .... `payments-10` are the partitions that are nothing but the directories in the filesystem. As I highlighted in my previous blog post, topic is a logical concept in kafka. It does not exist physically, only partitions do. A topic is a logical grouping of all partitions.
 
 ## Producer
 
@@ -69,7 +69,7 @@ $ bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic paymen
 > hey there!
 ```
 
-We produced four messages to the topic. Let's see how they are stored in the filesystem. It's hard to find out to which partition a message went to because kafka uses round-robbin algorithm to distribute the data to the partitions. The simple way is to find the size of all partitions (directories) and pick the largest ones.
+We produced four messages on the topic. Let's see how they are stored in the filesystem. It's hard to find out to which partition a message went to because kafka uses a round-robbin algorithm to distribute the data to the partitions. The simple way is to find the size of all partitions (directories) and pick the largest ones.
 
 ```shell
 $ cd /tmp/kafka-logs
@@ -86,7 +86,7 @@ $ du -hs *
  12K	payments-9
 ```
 
-As we see from the above snippet, our messages went to the partition 2, 4, 7 & 9. Let's see what's inside each of the partition.
+As we see from the above snippet, our messages went to the partitions 2, 4, 7 & 9. Let's see what's inside each of the partitions.
 
 ```shell
 $ ls payments-7
@@ -111,7 +111,7 @@ $ cat 00000000000000000000.timeindex
 
 ### Partition Metadata
 
-`parition.metadata` file contains `version` and a `topic_id`. This topic id is same for all the partitions.
+`partition.metadata` file contains `version` and a `topic_id`. This topic id is same for all the partitions.
 
 ### Log file
 
@@ -128,11 +128,11 @@ CreateTime: 1672041637310 size: 73 magic: 2 compresscodec: none crc: 456919687 i
 CreateTime: 1672041637310 keySize: -1 valueSize: 5 sequence: -1 headerKeys: [] payload: world
 ```
 
-The explanation of the above output is self-explanatory except for a few properties. `payload` is the actual data that was pushed to kafka. `offset` tells how far the current message is from zero index. `producerId` and `produerEpoch` are used in delivery guarantee semantics. We will discuss about them in the later blog posts. We will learn about `.index` and `.timeindex` files below.
+The explanation of the above output is self-explanatory except for a few properties. `payload` is the actual data that was pushed to kafka. `offset` tells how far the current message is from zero index. `producerId` and `produerEpoch` are used in delivery guarantee semantics. We will discuss about them in later blog posts. We will learn about `.index` and `.timeindex` files below.
 
 ### Partition Key
 
-We learnt that kafka distributes data in a round-robbin fashion to the partitions. But, what if we want to send data grouped by a key? that's where partition key comes in. When we send data along with a partition key, kafka puts them in a single partition. How does kafka finds the partition key? it computes using `hash(partition_key) % number_of_partitions`. If no partition key is present, then it uses round-robbin algorithm.
+We learnt that kafka distributes data in a round-robin fashion to the partitions. But, what if we want to send data grouped by a key? that's where the partition key comes in. When we send data along with a partition key, kafka puts them in a single partition. How does kafka finds the partition key? it computes using `hash(partition_key) % number_of_partitions`. If no partition key is present, then it uses round-robbin algorithm.
 
 We may wonder, what is the usecase of a partition key? Kafka guarantees the ordering of messages only at a partition level not at a topic level. The application of partition key is to ensure the ordering of the messages across all partitions.
 

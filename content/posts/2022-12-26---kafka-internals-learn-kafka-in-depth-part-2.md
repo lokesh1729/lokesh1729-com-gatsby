@@ -10,10 +10,10 @@ description: In my previous post, we learned about the basics of kafka. In this
   a way that it is highly scalable.
 category: software engineering
 tags:
-  - kafka
-  - message-queues
-  - distributed-systems
+  - software-engineering
   - system-design
+  - distribute-systems
+  - kafka
 ---
 ## Introduction
 

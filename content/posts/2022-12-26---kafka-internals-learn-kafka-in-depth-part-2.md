@@ -121,7 +121,7 @@ $ cat 00000000000000000000.timeindex
 
 ### Partition Metadata
 
-`partition.metadata` file contains `version` and a `topic_id`. This topic id is same for all the partitions.
+`partition.metadata` file contains a `version` and a `topic_id`. This topic id is the same for all the partitions.
 
 ### Log file
 
@@ -142,9 +142,9 @@ The explanation of the above output is self-explanatory except for a few propert
 
 ### Partition Key
 
-We learnt that kafka distributes data in a round-robin fashion to the partitions. But, what if we want to send data grouped by a key? that's where the partition key comes in. When we send data along with a partition key, kafka puts them in a single partition. How does kafka finds the partition key? it computes using `hash(partition_key) % number_of_partitions`. If no partition key is present, then it uses round-robbin algorithm.
+We learned that kafka distributes data in a round-robin fashion to the partitions. But, what if we want to send data grouped by a key? that's where the partition key comes in. When we send data along with a partition key, kafka puts them in a single partition. How does kafka find the partition key? it computes using `hash(partition_key) % number_of_partitions`. If no partition key is present, then it uses a round-robin algorithm.
 
-We may wonder, what is the usecase of a partition key? Kafka guarantees the ordering of messages only at a partition level not at a topic level. The application of partition key is to ensure the ordering of the messages across all partitions.
+We may wonder, what is the usecase of a partition key? Kafka guarantees the ordering of messages only at a partition level, not at a topic level. The application of the partition key is to ensure the ordering of the messages across all partitions.
 
 Let's see how this works under the hood. Let's produce some messages.
 
@@ -181,7 +181,7 @@ isTransactional: false isControl: false position: 495 CreateTime: 1672057327354 
 isvalid: true | offset: 5 CreateTime: 1672057327354 keySize: 10 valueSize: 43 sequence: -1 headerKeys: [] key: lokesh1729 payload: {"message": "lokesh1729 : payment success"}
 ```
 
-As we see from above log, all the messages with key `lokesh1729` are went to the same partition i.e. partition 7.
+As we see from the above log, all the messages with key `lokesh1729` went to the same partition i.e. partition 7.
 
 ### Index and Timeindex files
 
@@ -206,7 +206,7 @@ offset: 448 position: 58402
 offset: 485 position: 62533
 ```
 
-As we see from the above output, index file stores the offset and the position of it in the `.log` file so that if a consumer asks any arbitrary offset it simply does a binary search on `.index` file in `O(log n)` time and goes to the `.log` file and performs binary search again. Let's take an example, say if a consumer is reading 190th offset. Firstly, kafka broker reads the index file and performs binary search and either finds the exact offset or the closest to it. In this case, it finds offset as 175 and it's position as 23042. Then, it goes to the `.log` file and performs the binary search again since given the fact that `.log` file is append-only data structure stored in an ascending order of offsets.
+As we see from the above output, the index file stores the offset and its position of it in the `.log` file so that if a consumer asks for any arbitrary offset it simply does a binary search on the `.index` file in the `O(log n)` time and goes to the `.log` file and performs the binary search again. Let's take an example, say a consumer is reading 190th offset. Firstly, kafka broker reads the index file and performs a binary search and either finds the exact offset or the closest to it. In this case, it finds offset as 175 and its position as 23042. Then, it goes to the `.log` file and performs the binary search again given the fact that the `.log` file is an append-only data structure stored in ascending order of offsets.
 
 Now, let's look at the `.timeindex` file. Let's dump the file using the above command.
 ```shell
@@ -230,9 +230,7 @@ timestamp: 1672131857147 offset: 484
 timestamp: 1672131857185 offset: 517
 timestamp: 1672131857239 offset: 547
 ```
-As we see from the above result, `.timeindex` file stores the mapping between epoch timestamp and the offset in `.log` file. This will be useful when we want to replay the events from kafka.
-
-Why does these index files needed? As kafka relies on the disk to store the data, storing indexes reduces the latency.
+As we see from the above result, `.timeindex` file stores the mapping between epoch timestamp and the offset in `.log` file. This will be useful when we want to replay the events from kafka. Why does these index files needed? As kafka relies on the disk to store the data, storing indexes reduces the latency.
 
 ## Consumer
 
@@ -246,18 +244,18 @@ $ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic paymen
 {"message": "lokesh1729 : payment success"}
 ```
 
-> Note that `--from-beginning` argument is used to read from the starting. If not used, consumer reads the latest messages i.e. messages produced after the consumer is started.
+> Note that `--from-beginning` argument is used to read from the start. If not used, the consumer reads the latest messages i.e. messages produced after the consumer is started.
 
-Now, let's take a look at the filesystem. We can observe that there will be new folders created with the name `__consumer_offsets-0` , `__consumer_offsets-1` .... **consumer_offsets-49. Kafka stores the state of each consumer offset in a topic called `**consumer_offsets`with a default partition size of 50. If we look at what's inside the folder, the same files will be present as in`payments` topic we have seen above.
+Now, let's take a look at the filesystem. We can observe that there will be new folders created with the name `__consumer_offsets-0`, `__consumer_offsets-1` .... **consumer_offsets-49. Kafka stores the state of each consumer offset in a topic called `**consumer_offsets`with a default partition size of 50. If we look at what's inside the folder, the same files will be present as in the `payments` topic we have seen above.
 
 ![An image depicting the interaction between kafka broker and consumer](/media/kafka-consumer-offset.png "Interaction between kafka broker and consumer")
 
-As we see from the above image, consumer polls for the records and commits the offset whenever it's done processing. Kafka is flexible such that we can configure how many records to fetch in a single poll, auto committing interval etc... We will discuss all these configuration in a separate blog post.
+As we see from the above image, the consumer polls for the records and commits the offset whenever it's done processing. Kafka is flexible such that we can configure how many records to fetch in a single poll, auto-committing interval, etc... We will discuss all these configurations in a separate blog post.
 
-When a consumer is committing the offset, it sends the topic name, partition & offset information. Then, the broker uses it to construct key as `<consumer_group_name>, <topic>, <partition>` and value as `<offset>,<partition_leader_epoch>,<metadata>,<timestamp>` and store it in the `__consumer_offsets` topic.
+When a consumer is committing the offset, it sends the topic name, partition & offset information. Then, the broker uses it to construct the key as `<consumer_group_name>, <topic>, <partition>` and value as `<offset>,<partition_leader_epoch>,<metadata>,<timestamp>` and store it in the `__consumer_offsets` topic.
 
-When the consumer is crashed or restarted, it sends the request to the kafka broker and broker finds the partition in `__consumer_offsets` by doing `hash(<consumer_group_name>, <topic>, <partition> ) % 50` and fetches the latest offset and returns to the consumer.
+When the consumer is crashed or restarted, it sends the request to the kafka broker and the broker finds the partition in `__consumer_offsets` by doing `hash(<consumer_group_name>, <topic>, <partition> ) % 50` and fetches the latest offset and returns to the consumer.
 
 ## Bonus
 
-1. [Offset Explorer](https://www.kafkatool.com/download.html) - A useful tool to view topic, consumer information.
+1. [Offset Explorer](https://www.kafkatool.com/download.html) - A useful tool to view topic and consumer information.

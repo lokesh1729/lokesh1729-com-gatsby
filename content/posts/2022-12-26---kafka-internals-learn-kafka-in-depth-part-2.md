@@ -15,6 +15,8 @@ tags:
   - distributed-systems
   - system-design
 ---
+# Basic Setup
+
 Let's get started by installing kafka. [Download](https://www.apache.org/dyn/closer.cgi?path=/kafka/3.3.1/kafka_2.13-3.3.1.tgz) the latest Kafka release and extract it. Open terminal and start the kafka.
 
 ```shell
@@ -42,6 +44,8 @@ meta.properties                  payments-2    payments-5    payments-8     repl
 > `/tmp/kafka-logs` is the default directory where kafka stores the data. We can configure it to a different directory in `config/server.properties` for kafka and `config/zookeeper.properties` for zookeeper.
 
 As we see from the above result, `payments-0` , `payments-1` .... `payments-10` are the partitions which are nothing but the directories in the filesystem. Topic is just a logical concept in kafka. It does not exist physically, only partitions does.
+
+# Producer
 
 Now, let's produce some messages to the topic using the below command.
 
@@ -94,11 +98,11 @@ $ cat 00000000000000000000.index
 $ cat 00000000000000000000.timeindex
 ```
 
-### Partition Metadata
+## Partition Metadata
 
 `parition.metadata` file contains `version` and a `topic_id`. This topic id is same for all the partitions.
 
-### Log file
+## Log file
 
 This is where the data written by the producers are stored in a binary format. Let's try to view the contents of these files using command-line tools provided by kafka.
 
@@ -117,7 +121,7 @@ The explanation of the above output is self-explanatory except for a few propert
 
 We will learn about `.index` and `.timeindex` files soon.
 
-### Partition Key
+## Partition Key
 
 We learnt that kafka distributes data in a round-robbin fashion to the partitions. But, what if we want to send data grouped by a key? that's where partition key comes in. When we send data along with a partition key, kafka puts them in a single partition. What is the usecase of partition key? Kafka guarantees the ordering of messages only at a partition level not at a topic level. The application of partition key is to ensure the ordering of the messages across all partitions.
 
@@ -130,6 +134,8 @@ $ bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic paymen
 > lokesh1729|{"message": "lokesh1729 : logged out"}
 > lokesh1729|{"message": "lokesh1729 : payment success"}
 ```
+
+> `parse.key` tells kafka to parse the key by the separator. By default `key.separator` is set to tab, we are overriding to pipe.
 
 Let's look at the data using the same `kafka-dump-log` command. We need to find the partition by executing the command in all 10 partitions because we don't know to which partition it went to.
 
@@ -153,4 +159,8 @@ isTransactional: false isControl: false position: 495 CreateTime: 1672057327354 
 isvalid: true | offset: 5 CreateTime: 1672057327354 keySize: 10 valueSize: 43 sequence: -1 headerKeys: [] key: lokesh1729 payload: {"message": "lokesh1729 : payment success"}
 ```
 
-As we see from above log, all the messages with key `lokesh1729` are went to the same partition i.e. partition 7
+As we see from above log, all the messages with key `lokesh1729` are went to the same partition i.e. partition 7.
+
+
+
+# Consumer

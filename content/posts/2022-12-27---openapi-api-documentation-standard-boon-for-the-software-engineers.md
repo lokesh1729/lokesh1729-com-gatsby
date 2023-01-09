@@ -39,15 +39,12 @@ paths:
         ....
       responses:
         ....
-
 ```
 
 ## OpenAPI is a Magic
 
 1. You are maintaining a legacy system and you don't have OpenAPI spec for it. Writing it from scratch manually would take a lot of time. Instead, you can use OpenAPI generators to generate specs automatically. You simply need to pass the response object to it. You can find them here - <https://openapi.tools/#converters>
-
 2. The converters can also take HAR (HTTP Archive Format) file and generate a spec. You can get the HAR from chrome or firefox dev tools. Go to the network tab -> right-click on a request -> Save as HAR. List of such generators can be found here - <https://openapi.tools/#auto-generators>
-
 3. You can generate boilerplate code stubs with OpenAPI spec. Yes! you heard it right! you only need to write the business logic that's all, everything will be generated for you. There are so many generators available for every programming language. Find it here [https://openapi-generator.tech](https://openapi-generator.tech/). GitHub repo for the same <https://github.com/OpenAPITools/openapi-generator> & <https://github.com/OpenAPITools/openapi-generator-cli>
 
 With the above tools, writing an API is very easy in 2 steps. Create a sample JSON response structure of your API. Generate OpenAPI spec and pass it to the generators to generate stubs.
@@ -55,6 +52,34 @@ With the above tools, writing an API is very easy in 2 steps. Create a sample JS
 ## OpenAPI UI Tools
 
 There are two popular UI tools generated using OpenAPI spec. One is a widely used and popular [swagger](https://swagger.io/tools/swagger-ui/). Another is [Redoc](https://redocly.github.io/redoc/#section/OpenAPI-Specification). The integration of these tools with any programming language is very easy. The guides for them are present on their respective websites.
+
+## How to generate OpenAPI schema
+
+### Existing APIs
+
+If there are existing APIs in production, download HAR (from chrome/firefox devtools or use [mitmproxy](https://mitmproxy.org/)) and use [HAR to OpenAPI tools](https://openapi.tools/#auto-generators) to generate schema.
+
+### New APIs
+
+1. Create a mock API using [mocky](https://designer.mocky.io/)
+
+2. Hit the request from [swagger hub](https://inspector.swagger.io/builder)
+
+3. In the history, select the request and click on "CREATE API DEFINITION"
+
+4. This will create OpenAPI spec but does not include response.
+
+5. To include a response, first create JSON schema from your JSON using [easy json schema](https://easy-json-schema.github.io/).
+
+6. Copy the JSON schema and paste it [here](https://roger13.github.io/SwagDefGen/)
+
+Credits to these StackOverflow answers
+
+<https://stackoverflow.com/a/49277426/5123867>
+
+<https://stackoverflow.com/a/59738617/5123867>
+
+
 
 ## Additional Referrences
 

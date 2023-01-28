@@ -8,7 +8,7 @@ date: 2023-01-28T09:54:07.589Z
 description: One of the popular Change Data Capture (CDC) systems is debezium.
   In this blog post, we will discuss how to set up debezium and how it works
   internally.
-category: software engineering, distributed systems, system design
+category: software engineering
 tags:
   - software-engineering
   - debezium

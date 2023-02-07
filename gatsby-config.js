@@ -205,5 +205,11 @@ module.exports = {
     'gatsby-plugin-flow',
     'gatsby-plugin-optimize-svgs',
     'gatsby-plugin-netlify-cms',
+    {
+      resolve: `gatsby-plugin-google-adsense`,
+      options: {
+        publisherId: `ca-pub-6262065201286775`
+      },
+    },
   ]
 };

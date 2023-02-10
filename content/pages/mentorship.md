@@ -1,7 +1,7 @@
 ---
 template: page
 title: Mentorship
-slug: mentoring
+slug: mentorship
 socialImage: /media/image-2.jpg
 draft: false
 ---

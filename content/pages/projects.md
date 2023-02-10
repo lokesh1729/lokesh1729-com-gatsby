@@ -1,9 +1,7 @@
 ---
 template: page
 title: Projects
-slug: projects
 socialImage: /media/projects.png
-draft: false
 ---
 I have been working on multiple projects apart from my full-time job.
 

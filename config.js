@@ -16,16 +16,24 @@ module.exports = {
       path: '/'
     },
     {
-      label: 'About me',
+      label: 'About',
       path: '/pages/about'
     },
     {
-      label: 'Contact me',
+      label: 'Contact',
       path: '/pages/contact'
     },
     {
       label: 'Resume',
       path: '/pages/resume'
+    },
+    {
+      label: 'Projects',
+      path: '/pages/projects'
+    },
+    {
+      label: 'Mentorship',
+      path: '/pages/mentorship'
     }
   ],
   author: {

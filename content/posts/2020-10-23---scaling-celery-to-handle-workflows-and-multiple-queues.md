@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Scaling Celery to handle workflows and multiple queues
-slug: scaling-celery-to-handle-workflows-and-multiple-queues
+slug: "/scaling-celery-to-handle-workflows-and-multiple-queues"
 socialImage: "/media/scaling-celery.png"
 draft: false
 date: "2020-10-23"

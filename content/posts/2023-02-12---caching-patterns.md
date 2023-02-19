@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Caching patterns
-slug: caching-patterns
+slug: "/caching-patterns"
 socialImage: "/media/caching-patterns.png"
 draft: false
 date: "2023-02-12T10:28:18.034Z"

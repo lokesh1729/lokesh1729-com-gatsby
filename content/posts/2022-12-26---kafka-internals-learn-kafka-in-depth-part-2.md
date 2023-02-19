@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Kafka Internals - Learn kafka in-depth (Part-2)
-slug: kafka-internals-learn-kafka-in-depth-part-2
+slug: "/kafka-internals-learn-kafka-in-depth-part-2"
 socialImage: "/media/learn-kafka-in-depth.png"
 draft: false
 date: "2022-03-15T04:55:02.399Z"

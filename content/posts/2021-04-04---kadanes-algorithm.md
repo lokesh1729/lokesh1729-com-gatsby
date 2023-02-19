@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Kadane's algorithm
-slug: kadane-algorithm
+slug: "/kadane-algorithm"
 socialImage: "/media/kadane-s-algorithm.png"
 draft: false
 date: "2021-04-04T06:26:11.924Z"

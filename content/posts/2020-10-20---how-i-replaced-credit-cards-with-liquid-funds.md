@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: How I replaced credit cards with liquid mutual funds
-slug: replaced-credit-cards-with-liquid-mutual-funds
+slug: "/replaced-credit-cards-with-liquid-mutual-funds"
 socialImage: "/media/replace-credit-cards-with-mutual-funds.png"
 draft: false
 date: "2020-10-20"

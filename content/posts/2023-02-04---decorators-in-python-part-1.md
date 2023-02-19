@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Decorators in python (part-1)
-slug: python-decorators
+slug: "/python-decorators"
 socialImage: "/media/python-decorators.png"
 draft: false
 date: "2023-02-04T10:52:10.327Z"

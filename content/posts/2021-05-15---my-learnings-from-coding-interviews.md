@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: My learnings from coding interviews (2021)
-slug: my-learnings-from-coding-interviews
+slug: "/my-learnings-from-coding-interviews"
 socialImage: "/media/coding-interviews.png"
 draft: false
 date: "2021-05-15T16:06:33.185Z"

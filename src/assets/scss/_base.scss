@@ -1,4 +1,7 @@
 @charset "UTF-8";
 
 @import "base/generic";
+@import "prismjs/themes/prism-solarizedlight.css";
+@import "prismjs/plugins/line-numbers/prism-line-numbers.css";
+@import "prismjs/plugins/line-highlight/prism-line-highlight.css";
 @import "base/prism";

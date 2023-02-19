@@ -148,7 +148,12 @@ export default {
             options: { wrapperStyle: "margin-bottom: 1.0725rem" },
           },
           "gatsby-remark-autolink-headers",
-          "gatsby-remark-prismjs",
+          {
+            resolve: "gatsby-remark-prismjs",
+            options: {
+              showLineNumbers: true,
+            }
+          },
           "gatsby-remark-copy-linked-files",
           "gatsby-remark-smartypants",
           "gatsby-remark-external-links",

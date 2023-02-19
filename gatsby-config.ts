@@ -17,20 +17,6 @@ export default {
   },
   plugins: [
     {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-highlight-code`,
-            options: {
-              terminal: "none",
-              theme: "monokai",
-            },
-          },
-        ],
-      },
-    },
-    {
       resolve: "gatsby-plugin-robots-txt",
       options: {
         host: config.url,

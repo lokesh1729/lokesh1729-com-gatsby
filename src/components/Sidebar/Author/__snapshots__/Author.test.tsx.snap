@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Author renders correctly 1`] = `
+<div>
+  <a
+    href="/"
+  />
+  <div>
+    <h2>
+      <a
+        href="/"
+      >
+        Lokesh Sanapalli
+      </a>
+    </h2>
+  </div>
+  <p>
+    Lokesh Sanapalli is a software engineer who loves to solve real world problems using software engineering principles.
+  </p>
+</div>
+`;

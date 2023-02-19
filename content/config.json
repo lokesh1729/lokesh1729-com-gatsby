@@ -1,0 +1,59 @@
+{
+  "title": "Lokesh Sanapalli - A pragmatic software engineering leader",
+  "url": "https://lokesh1729.com",
+  "subtitle": "Welcome to my blog",
+  "copyright": "© All rights reserved.",
+  "googleAnalyticsId": "UA-122847285-2",
+  "disqusShortname": "lokesh1729",
+  "postsLimit": 5,
+  "pathPrefix": "/",
+  "menu": [
+        {
+            "label": "Articles",
+            "path": "/"
+        },
+        {
+            "label": "About me",
+            "path": "/pages/about"
+        },
+        {
+            "label": "Contact me",
+            "path": "/pages/contact"
+        },
+        {
+            "label": "Resume",
+            "path": "/pages/resume"
+        },
+        {
+            "label": "Projects",
+            "path": "/pages/projects"
+        },
+        {
+            "label": "Mentorship",
+            "path": "/pages/mentorship"
+        }
+    ],
+  "author": {
+    "name": "Lokesh Sanapalli",
+    "photo": "/static/photo.png",
+    "bio": "Lokesh Sanapalli is a software engineer who loves to solve real world problems using software engineering principles.",
+    "contacts": {
+      "rss": "",
+      "email": "hi@lokesh1729.com",
+      "github": "lokesh1729",
+      "facebook": "",
+      "telegram": "",
+      "twitter": "lsanapalli",
+      "linkedin": "lokesh1729",
+      "instagram": "slokesh1729",
+      "mastodon": "",
+      "line": "",
+      "weibo": "",
+      "gitlab": "",
+      "medium": "@slokesh1729",
+      "youtube": "UCSJCJ19LZMcfusT4uKqZKbQ",
+      "codepen": "",
+      "soundcloud": ""
+    }
+  }
+}

@@ -67,6 +67,13 @@ export default {
       },
     },
     {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "resources",
+        path: `${__dirname}/static/resources`,
+      },
+    },
+    {
       resolve: "gatsby-plugin-feed",
       options: {
         query: `

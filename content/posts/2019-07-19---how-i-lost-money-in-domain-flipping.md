@@ -38,12 +38,12 @@ After buying, I thought what if the domains were not sold in an year. I panicked
 
 1. So, I put all my domains in flippa.com with premium listing by paying 59$. I realized that domain flipping is not so easy way to make money.
 2. I put them for auction in [namepros.com](https://namepros.com). Sold 2 domains for 90% loss 😔. I got to know that we shouldn't buy trademarked domains like `rockstargames.io` `wimbledon.me` and `salesforces.co` due to copyright infringements. So, I panicked and immediately deleted those domains for loss.
-3. I heard about [undeveloped.com](undeveloped.com) (now, [dan.com](dan.com)) and listed all my domains there. The good thing about them is they provide a neat landing page and statistics about each domain. I waited for a year, but unfortunately, only one domain was sold.
+3. I heard about [undeveloped.com](https://undeveloped.com) (now, [dan.com](https://dan.com)) and listed all my domains there. The good thing about them is they provide a neat landing page and statistics about each domain. I waited for a year, but unfortunately, only one domain was sold.
 
 ### What did I learn?
 
 - never invest without knowing the basics of anything.
 - more than pros, know cons first.
 - don't trust any website/person. only believe in your analysis and conscience.
-- patience is the key. say you have some money with which you can buy 10 domains for an year. do not buy 10 domains for an year, instead research and shortlist 2-3 domains and buy them domain for at least 5 years and put them on sites like [dan.com](dan.com) and forget about them. this is where I went wrong
+- patience is the key. say you have some money with which you can buy 10 domains for an year. do not buy 10 domains for an year, instead research and shortlist 2-3 domains and buy them domain for at least 5 years and put them on sites like [dan.com](https://dan.com) and forget about them. this is where I went wrong
 - if you bought a bunch of domains, try developing something on them.

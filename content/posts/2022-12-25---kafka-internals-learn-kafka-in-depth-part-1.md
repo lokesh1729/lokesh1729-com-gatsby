@@ -12,7 +12,7 @@ category: "Software Engineering"
 tags:
   - "software-engineering"
   - "system-design"
-  - "distribute-systems"
+  - "distributed-systems"
   - "kafka"
 ---
 

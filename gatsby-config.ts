@@ -20,7 +20,7 @@ export default {
       resolve: "gatsby-plugin-robots-txt",
       options: {
         host: config.url,
-        sitemap: `${config.url}/sitemap.xml`,
+        sitemap: `${config.url}/sitemap/sitemap-index.xml`,
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },
@@ -131,7 +131,7 @@ export default {
         ],
       },
     },
-    'gatsby-plugin-netlify-cms-paths',
+    "gatsby-plugin-netlify-cms-paths",
     {
       resolve: "gatsby-transformer-remark",
       options: {
@@ -152,7 +152,7 @@ export default {
             resolve: "gatsby-remark-prismjs",
             options: {
               showLineNumbers: true,
-            }
+            },
           },
           "gatsby-remark-copy-linked-files",
           "gatsby-remark-smartypants",
@@ -194,7 +194,6 @@ export default {
           }
         `,
       },
-      output: "/sitemap.xml",
     },
     {
       resolve: "gatsby-plugin-manifest",
@@ -234,13 +233,6 @@ export default {
         },
       },
     },
-    // {
-    //   resolve: "@sentry/gatsby",
-    //   options: {
-    //     dsn: process.env.SENTRY_DSN,
-    //     tracesSampleRate: 1,
-    //   },
-    // },
     "gatsby-plugin-image",
     "gatsby-plugin-catch-links",
     "gatsby-plugin-optimize-svgs",

@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Change Data Capture Using Debezium
-slug: "/posts/change-data-capture-debezium"
+slug: "/posts/change-data-capture-debezium/"
 socialImage: "/media/change-data-capture.png"
 draft: false
 date: "2023-01-28T09:54:07.589Z"

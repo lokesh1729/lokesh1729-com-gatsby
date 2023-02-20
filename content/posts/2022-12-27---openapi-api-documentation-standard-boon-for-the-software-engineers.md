@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: OpenAPI - API documentation standard - Boon for the software engineers
-slug: "/posts/openapi-document-standard-boon-for-software-engineers"
+slug: "/posts/openapi-document-standard-boon-for-software-engineers/"
 socialImage: "/media/openapi.png"
 draft: false
 date: "2022-11-28T12:00:29.270Z"

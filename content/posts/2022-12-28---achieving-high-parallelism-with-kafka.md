@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Achieving high parallelism with kafka
-slug: "/posts/achieving-high-parallelism-with-kafka"
+slug: "/posts/achieving-high-parallelism-with-kafka/"
 socialImage: "/media/kafka-high-parallelism.png"
 draft: false
 date: "2022-12-28T18:01:20.542Z"

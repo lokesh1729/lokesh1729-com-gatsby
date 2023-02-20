@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: How I replaced credit cards with liquid mutual funds
-slug: "/posts/replaced-credit-cards-with-liquid-mutual-funds"
+slug: "/posts/replaced-credit-cards-with-liquid-mutual-funds/"
 socialImage: "/media/replace-credit-cards-with-mutual-funds.png"
 draft: false
 date: "2020-10-20"
@@ -37,7 +37,7 @@ After that, I took some money from my investments ( one month of my salary ) and
 
 Now, coming to the main problem, how can we replace credit cards with liquid mutual funds ? simple, create another fund named 'Credit Cards' with same mutual funds. You can invest in same mutual fund but with different goal, I use [goalwise](https://goalwise.com) for it. If you are in need of some money, withdraw from the fund and then don't forget to put it back. The advantage of this method is you have the flexibility to repay and you don't need to worry about payment due deadlines and late payment penalties. But, for this you need strict financial discipline.
 
-But, you may ask if we have that much of corpus to create fund, why do we use credit cards ? it's true, in such case instead of credit cards I suggest you to borrow mone from [Walnut Prime](https://www.getwalnut.com/prime/faq) , [ETMoney LoanPass](https://www.etmoney.com/loan/loanpass) or [MoneyTap](https://www.moneytap.com/).
+But, you may ask if we have that much of corpus to create fund, why do we use credit cards ? it's true, in such case instead of credit cards I suggest you to borrow mone from [Walnut Prime](https://www.getwalnut.com/prime/faq) , [ETMoney LoanPass](https://www.etmoney.com/help/credit/loanpass) or [MoneyTap](https://www.moneytap.com/).
 
 ### Conclusion
 

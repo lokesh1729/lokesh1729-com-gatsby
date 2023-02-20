@@ -14,23 +14,23 @@
     },
     {
       "label": "About me",
-      "path": "/pages/about"
+      "path": "/pages/about/"
     },
     {
       "label": "Contact me",
-      "path": "/pages/contact"
+      "path": "/pages/contact/"
     },
     {
       "label": "Resume",
-      "path": "/pages/resume"
+      "path": "/pages/resume/"
     },
     {
       "label": "Projects",
-      "path": "/pages/projects"
+      "path": "/pages/projects/"
     },
     {
       "label": "Mentorship",
-      "path": "/pages/mentorship"
+      "path": "/pages/mentorship/"
     }
   ],
   "author": {

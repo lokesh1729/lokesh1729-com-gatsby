@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Rate Limiting - Different Approaches and Implementation
-slug: "/posts/rate-limiting"
+slug: "/posts/rate-limiting/"
 socialImage: "/media/rate-limiting.png"
 draft: false
 date: "2023-01-24T12:44:13.610Z"

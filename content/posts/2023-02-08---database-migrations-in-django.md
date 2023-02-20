@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Database Migrations in Django
-slug: "/posts/migrations-in-django"
+slug: "/posts/migrations-in-django/"
 socialImage: "/media/django-migrations.png"
 draft: false
 date: "2023-02-08T17:54:21.570Z"

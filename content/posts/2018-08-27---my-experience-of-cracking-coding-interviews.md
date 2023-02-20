@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: My experience of cracking coding interviews (2018)
-slug: "/posts/my-experience-of-cracking-coding-interviews-2018"
+slug: "/posts/my-experience-of-cracking-coding-interviews-2018/"
 socialImage: "/media/coding-interviews.png"
 draft: false
 date: "2018-08-27T00:00:00Z"

@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Achieving high parallelism with kafka
-slug: "/achieving-high-parallelism-with-kafka"
+slug: "/posts/achieving-high-parallelism-with-kafka"
 socialImage: "/media/kafka-high-parallelism.png"
 draft: false
 date: "2022-12-28T18:01:20.542Z"
@@ -12,6 +12,7 @@ tags:
   - "distributed-systems"
   - "kafka"
 ---
+
 In this post, we'll discuss consumer groups and how to achieve parallelism using them in Kafka. If you haven't read my previous blog posts about kafka, you will find them in the end.
 
 ## Consumer Groups

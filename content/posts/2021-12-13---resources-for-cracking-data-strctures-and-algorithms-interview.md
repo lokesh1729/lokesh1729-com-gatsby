@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Resources for cracking data strctures and algorithms interview
-slug: "/resources-for-cracking-data-structures-algorithms-interview"
+slug: "/posts/resources-for-cracking-data-structures-algorithms-interview"
 socialImage: "/media/resources-for-cracking-data-strctures-and-algorithms-interview.png"
 draft: false
 date: "2021-12-13T09:45:38.356Z"
@@ -12,6 +12,7 @@ tags:
   - "coding-interviews"
   - "software-engineering-interviews"
 ---
+
 Hello Everyone,
 
 In my previous blog post, I discussed how to crack coding interviews. In this post, I'll share the resources required for it.

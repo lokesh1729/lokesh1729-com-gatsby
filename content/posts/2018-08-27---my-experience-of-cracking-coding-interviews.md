@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: My experience of cracking coding interviews (2018)
-slug: "/my-experience-of-cracking-coding-interviews-2018"
+slug: "/posts/my-experience-of-cracking-coding-interviews-2018"
 socialImage: "/media/coding-interviews.png"
 draft: false
 date: "2018-08-27T00:00:00Z"
@@ -12,6 +12,7 @@ tags:
   - "coding-interviews"
   - "software-engineering-interviews"
 ---
+
 ![banner representing coding interviews](/media/coding-interviews.png)
 
 Landing at a dream job in a product based company requires to crack coding interviews. One may not succeed in one interview, rejections may happen. But, key thing is to learn from the failure and keep moving on. In this post, I am gonna blog about my experience of failed coding interviews.

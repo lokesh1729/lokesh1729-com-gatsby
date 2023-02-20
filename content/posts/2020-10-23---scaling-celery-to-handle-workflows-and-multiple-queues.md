@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Scaling Celery to handle workflows and multiple queues
-slug: "/scaling-celery-to-handle-workflows-and-multiple-queues"
+slug: "/posts/scaling-celery-to-handle-workflows-and-multiple-queues"
 socialImage: "/media/scaling-celery.png"
 draft: false
 date: "2020-10-23"
@@ -13,6 +13,7 @@ tags:
   - "messaging-queues"
   - "celery"
 ---
+
 ![banner representing celery logo](/media/scaling-celery.png)
 
 Celery is an asynchronous task queue which integrates nicely with [django](https://www.djangoproject.com/). In this post, I am not going to write a tutorial on how to setup and use celery, there are many articles for it already. I am going to discuss about some of the advanced features of celery I used in some of the projects that I worked on.
@@ -56,7 +57,7 @@ def cron_to_update_product(products):
 
 #### Code Breakdown
 
-`.s` - added to the task is called `signature`. 
+`.s` - added to the task is called `signature`.
 
 `group(group_tasks)` - celery creates `n` number of products where `n` is number of products. All these tasks will be executed concurrently without blocking each other.
 
@@ -64,7 +65,7 @@ def cron_to_update_product(products):
 
 `apply_async` - runs the task
 
-There's one key point to note here, the function `update_status_through_callback` should take `grouped_result` as a first argument. `grouped_result` will be a list of return values of all the grouped tasks. 
+There's one key point to note here, the function `update_status_through_callback` should take `grouped_result` as a first argument. `grouped_result` will be a list of return values of all the grouped tasks.
 For example, there are 5 group tasks ran and 3 of them are failed. Then the `grouped_result` will look like this
 
 ```python
@@ -114,7 +115,7 @@ CELERY_TASK_DEFAULT_EXCHANGE = "default"
 CELERY_TASK_DEFAULT_EXCHANGE_TYPE = "topic"
 CELERY_TASK_DEFAULT_ROUTING_KEY = "task.default"
 
-CELERY_TASK_ROUTES = {  
+CELERY_TASK_ROUTES = {
   "foo.tasks.report_type1_aggregator": {
       "queue": "report_type1_aggregator_queue"
   },
@@ -140,7 +141,7 @@ We defined routes for each task and assigned a queue for it. But, we haven't cre
 
 ```bash
 celery worker -A proj_name -O fair -Q {queue_name}
- -P gevent --autoscale=32,16 --loglevel=INFO 
+ -P gevent --autoscale=32,16 --loglevel=INFO
  --logfile={queue_name}_celery.log
 ```
 
@@ -153,7 +154,7 @@ instead of running many commands, use `celery multi` utility. Examples are given
 Now, let's create default worker
 
 ```bash
-celery worker -A proj_name -O fair -Q default 
+celery worker -A proj_name -O fair -Q default
 -P gevent --loglevel=INFO --logfile=celery.log
 ```
 

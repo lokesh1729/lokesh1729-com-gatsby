@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Kadane's algorithm
-slug: "/kadane-algorithm"
+slug: "/posts/kadane-algorithm"
 socialImage: "/media/kadane-s-algorithm.png"
 draft: false
 date: "2021-04-04T06:26:11.924Z"
@@ -12,6 +12,7 @@ tags:
   - "coding-interviews"
   - "data-structures"
 ---
+
 Hello everyone! in this post, we'll discuss about kadane's algorithm. I'll try to keep it as simple as possible. The goal of this algorithm is to find a maximum value of sub-array sum. Let's take an example to understand.
 
 `arr = [7,2,-1,-3,9]`
@@ -44,7 +45,7 @@ Let's see how we can optimize this
 
 ![overlapping sub-problems](/media/overlapping_subproblems.png "overlapping sub-problems")
 
-From the above image, we see that there are repeated computations i.e. **overlapping sub-problems**. If we find the maximum of a1+a2 and a1+a2+a3 gives solution for a sub-problem. We can prove the fact by induction that when combining solutions of all sub-problems will give the overall solution i.e. **optimal sub-structure**. 
+From the above image, we see that there are repeated computations i.e. **overlapping sub-problems**. If we find the maximum of a1+a2 and a1+a2+a3 gives solution for a sub-problem. We can prove the fact by induction that when combining solutions of all sub-problems will give the overall solution i.e. **optimal sub-structure**.
 
 From these two facts, we can say that we're using dynamic programming approach.
 
@@ -54,7 +55,7 @@ The idea is find maximum of all nested sub-problems eventually we'll reach the s
 
 As depicted in the above image it is very clearer that `max(a1+a2, a1+a2+a3)` gives local maximum when we do this for all sub-problems we'll get the global maximum.
 
- at every j, local_max holds maximum sum A\[i] + A\[i+1] + .... A\[j-1] for all i ∈ {1....j}. So, `local_max + A[j]` contains next local maximum. By the end we reach n it'll contain maximum of {1....n-1} elements which gives our result
+at every j, local_max holds maximum sum A\[i] + A\[i+1] + .... A\[j-1] for all i ∈ {1....j}. So, `local_max + A[j]` contains next local maximum. By the end we reach n it'll contain maximum of {1....n-1} elements which gives our result
 
 Let's write code
 
@@ -80,7 +81,7 @@ When I first saw this problem and above example, I thought of a solution to find
 
 ![chart showing stock prices](/media/chart.png "refer to above chart showing stock prices over time")
 
-From above chart we can see that, the minimum value is -1. After -1, the maximum value is 6. The total profit we get is 7. But, there's another case priort to minimum which is 2 and 11 which gives profit of 9. This proves that the above approach is wrong.  
+From above chart we can see that, the minimum value is -1. After -1, the maximum value is 6. The total profit we get is 7. But, there's another case priort to minimum which is 2 and 11 which gives profit of 9. This proves that the above approach is wrong.
 
 We need to apply kadane's algorithm, but with a slight change. Here, we need to find the maximum sub-array sum of stock price differences. Let's see how this works.
 

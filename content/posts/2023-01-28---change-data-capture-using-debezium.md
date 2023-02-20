@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Change Data Capture Using Debezium
-slug: "/change-data-capture-debezium"
+slug: "/posts/change-data-capture-debezium"
 socialImage: "/media/change-data-capture.png"
 draft: false
 date: "2023-01-28T09:54:07.589Z"
@@ -13,6 +13,7 @@ tags:
   - "distributed-systems"
   - "system-design"
 ---
+
 ## Introduction
 
 What is change data capture? A change that occurred in one data source will be captured and replicated in another data source. Let's understand it with a picture.
@@ -71,7 +72,7 @@ The procedure for enabling binlogs in a self-hosted environment is easy. The ins
 # show rds config
 call mysql.rds_show_configuration;
 # set binlog retention period
-call mysql.rds_set_configuration('binlog retention hours', 96); 
+call mysql.rds_set_configuration('binlog retention hours', 96);
 ```
 
 ### Deploy MySQL Connector
@@ -99,7 +100,7 @@ Before deploying a MySQL connector, we need to prepare the JSON.
     "topic.creation.default.partitions": 10,
     "database.history.skip.unparseable.ddl": "true",
     "event.processing.failure.handling.mode": "warn",
-    "snapshot.lock.timeout.ms": 180000,
+    "snapshot.lock.timeout.ms": 180000
   }
 }
 ```
@@ -126,19 +127,19 @@ This is how the data from the schema history topic looks
 
 ```json
 {
-  "source" : {
-    "server" : "prod-debezium"
+  "source": {
+    "server": "prod-debezium"
   },
-  "position" : {
-    "transaction_id" : null,
-    "ts_sec" : 1674648853,
-    "file" : "mysql-bin-changelog.106869",
-    "pos" : 69735280,
-    "server_id" : 1229362390
+  "position": {
+    "transaction_id": null,
+    "ts_sec": 1674648853,
+    "file": "mysql-bin-changelog.106869",
+    "pos": 69735280,
+    "server_id": 1229362390
   },
-  "databaseName" : "licious",
-  "ddl" : "CREATE TABLE `user_groups` (\n\t`id` bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,\n\t`user_id` bigint(20),\n\t`customer_key` varchar(25) NOT NULL,\n\tCONSTRAINT FOREIGN KEY `fk_user_id` (user_id) REFERENCES `users`(id) ON DELETE CASCADE,\n\tCONSTRAINT UNIQUE KEY `unique_user_group_id` (user_id, customer_key)\n) ENGINE=InnoDB DEFAULT CHARSET=latin1",
-  "tableChanges" : [ ]
+  "databaseName": "licious",
+  "ddl": "CREATE TABLE `user_groups` (\n\t`id` bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,\n\t`user_id` bigint(20),\n\t`customer_key` varchar(25) NOT NULL,\n\tCONSTRAINT FOREIGN KEY `fk_user_id` (user_id) REFERENCES `users`(id) ON DELETE CASCADE,\n\tCONSTRAINT UNIQUE KEY `unique_user_group_id` (user_id, customer_key)\n) ENGINE=InnoDB DEFAULT CHARSET=latin1",
+  "tableChanges": []
 }
 ```
 
@@ -179,7 +180,7 @@ Change the MySQL configuration either through `/etc/mysql.cnf` or by executing t
 
 Refer - [MySQL Documentation](https://dev.mysql.com/doc/refman/8.0/en/binary-log-setting.html)
 
-### *Database history topic* *[retention.ms](http://retention.ms)* *should be ‘-1’ or greater than 5 years*
+### _Database history topic_ _[retention.ms](http://retention.ms)_ _should be ‘-1’ or greater than 5 years_
 
 ```plaintext
 2022-01-06 13:08:55,904 WARN   ||  Database history topic
@@ -189,28 +190,28 @@ but is '604800000'   [io.debezium.relational.history.KafkaDatabaseHistory]
 
 Set the `retention.ms` property of database history topic to -1 via kafka CLI.
 
-### *The connector is trying to read binlog but this is no longer available on the server.*
+### _The connector is trying to read binlog but this is no longer available on the server._
 
 ```plaintext
-2022-01-06 13:08:56,405 ERROR  || 
+2022-01-06 13:08:56,405 ERROR  ||
 WorkerSourceTask{id=jigyasa-mysql-connector-licious-2-0} Task threw an uncaught and unrecoverable exception.
-Task is being killed and will not recover until manually restarted  
+Task is being killed and will not recover until manually restarted
 [org.apache.kafka.connect.runtime.WorkerTask] io.debezium.DebeziumException:
 The connector is trying to read binlog starting at SourceInfo [currentGtid=null,
 currentBinlogFilename=mysql-bin-changelog.032256, currentBinlogPosition=53270, currentRowNumber=0,
 serverId=0, sourceTime=null, threadId=-1, currentQuery=null, tableIds=[], databaseName=null],
-but this is no longer available on the server. Reconfigure the connector to use a snapshot when needed.  
+but this is no longer available on the server. Reconfigure the connector to use a snapshot when needed.
 
 
 2022-01-06 13:08:56,405 INFO   ||  Connector requires binlog file
 'mysql-bin-changelog.032256', but MySQL only has mysql-bin-changelog.032918, mysql-bin-changelog.032919,
-mysql-bin-changelog.032920   [io.debezium.connector.mysql.MySqlConnectorTask]  
+mysql-bin-changelog.032920   [io.debezium.connector.mysql.MySqlConnectorTask]
 ```
 
 1. Extend the binlog retention time using the commands mentioned above.
 2. Delete the connector and re-deploy it again using REST API.
 
-### *Could not find the first log file name in the binary log index file Error code: 1236; SQLSTATE: HY000.*
+### _Could not find the first log file name in the binary log index file Error code: 1236; SQLSTATE: HY000._
 
 ```plaintext
 org.apache.kafka.connect.errors.ConnectException: An exception occurred in the change event producer. This connector will be stopped.
@@ -230,7 +231,7 @@ Caused by: com.github.shyiko.mysql.binlog.network.ServerException: Could not fin
 
 This generally happens if you had upgraded MySQL, and cleaned up the binlogs. Delete the connector and re-deploy it again using REST API.
 
-### *io.debezium.DebeziumException: Failed to read next byte from position 1640249837*
+### _io.debezium.DebeziumException: Failed to read next byte from position 1640249837_
 
 ```plaintext
 org.apache.kafka.connect.errors.ConnectException: An exception occurred in the change event producer. This connector will be stopped.
@@ -256,7 +257,7 @@ Caused by: java.io.EOFException: Failed to read next byte from position 16402498
 
 This happens if the binlog contains any special character that the connector is not able to process. One way to resolve this is to set `event.processing.failure.handling.mode` to warn in the connector configuration.
 
-### *MySQLTransactionRollbackException: Lock wait timeout exceeded; try restarting transaction*
+### _MySQLTransactionRollbackException: Lock wait timeout exceeded; try restarting transaction_
 
 ```plaintext
 org.apache.kafka.connect.errors.ConnectException:An exception occurred in the change event producer. This connector will be

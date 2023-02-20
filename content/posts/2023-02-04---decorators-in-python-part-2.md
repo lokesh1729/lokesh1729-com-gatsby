@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Decorators in python (part-2)
-slug: "/decorators-in-python-part-2"
+slug: "/posts/decorators-in-python-part-2"
 socialImage: "/media/python-decorators.png"
 draft: false
 date: "2023-02-04T14:15:07.389Z"
@@ -11,6 +11,7 @@ tags:
   - "python"
   - "software-engineering"
 ---
+
 ## Introduction
 
 If you have not read [the previous post](https://lokesh1729.com/posts/python-decorators), please go through it because it is a prerequisite for this. In this post, we will go into some more depth and learn about decorators with arguments.

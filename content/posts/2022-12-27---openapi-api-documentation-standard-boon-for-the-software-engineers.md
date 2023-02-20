@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: OpenAPI - API documentation standard - Boon for the software engineers
-slug: "/openapi-document-standard-boon-for-software-engineers"
+slug: "/posts/openapi-document-standard-boon-for-software-engineers"
 socialImage: "/media/openapi.png"
 draft: false
 date: "2022-11-28T12:00:29.270Z"
@@ -11,6 +11,7 @@ tags:
   - "software-engineering"
   - "openapi"
 ---
+
 ## Introduction
 
 Your product manager brought a new product requirement. Frontend engineers and you (backend engineer) finalized a solution. They asked you for an API contract. You created a google doc (or confluence) and gave it to them. The contract changed later and you update the code as well as the document. Wouldn't it be so nice if the documentation also lives in your code repository and automatically updates along with your code changes? That's where OpenAPI comes in.
@@ -76,8 +77,6 @@ Credits to these StackOverflow answers
 <https://stackoverflow.com/a/49277426/5123867>
 
 <https://stackoverflow.com/a/59738617/5123867>
-
-
 
 ## Additional Referrences
 

@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Caching patterns
-slug: "/caching-patterns"
+slug: "/posts/caching-patterns"
 socialImage: "/media/caching-patterns.png"
 draft: false
 date: "2023-02-12T10:28:18.034Z"
@@ -12,6 +12,7 @@ tags:
   - "distributed-systems"
   - "cache"
 ---
+
 ## Introduction
 
 How many heard the phrase "Cache invalidation is the toughest problem in computer science?" I was first introduced to the term "cache" in my computer architecture class in engineering. When I first learned, I did not understand the concept. It took me some years to wholly understood the concept. In this blog post, we will look at the basics of caching and different strategies.

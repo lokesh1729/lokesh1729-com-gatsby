@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Decorators in python (part-1)
-slug: "/python-decorators"
+slug: "/posts/python-decorators"
 socialImage: "/media/python-decorators.png"
 draft: false
 date: "2023-02-04T10:52:10.327Z"
@@ -11,6 +11,7 @@ tags:
   - "python"
   - "software-engineering"
 ---
+
 ## Introduction
 
 As usual, let's stick to the first principles. Let's start with what was taught in our schools. What is a function in mathematics? `f(x) -> y` spelled as `f of x` is a function that takes `x` as input and returns `y` as output. Right, It's the same thing in programming. A function takes some parameters as input and returns a value or object as output.
@@ -32,7 +33,7 @@ resp = make_http_request("https://twitter.com/api/users")
 print(resp)
 ```
 
-*notice the difference between parameter and argument. "parameters" are the variables passed to the function, they are not the real values. "arguments" are the real values passed to the function. It's not much important to differentiate them as some people use both words interchangeably.*
+_notice the difference between parameter and argument. "parameters" are the variables passed to the function, they are not the real values. "arguments" are the real values passed to the function. It's not much important to differentiate them as some people use both words interchangeably._
 
 ## Function Basics
 

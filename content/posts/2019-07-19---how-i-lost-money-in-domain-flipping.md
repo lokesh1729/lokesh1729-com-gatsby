@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: My bitter experience in domaing flipping
-slug: "/my-experience-in-domain-flipping"
+slug: "/posts/my-experience-in-domain-flipping"
 socialImage: "/media/domain-flipping.png"
 draft: false
 date: "2019-07-19"

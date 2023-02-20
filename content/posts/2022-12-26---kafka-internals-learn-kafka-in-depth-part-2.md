@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Kafka Internals - Learn kafka in-depth (Part-2)
-slug: "/kafka-internals-learn-kafka-in-depth-part-2"
+slug: "/posts/kafka-internals-learn-kafka-in-depth-part-2"
 socialImage: "/media/learn-kafka-in-depth.png"
 draft: false
 date: "2022-03-15T04:55:02.399Z"
@@ -13,6 +13,7 @@ tags:
   - "distribute-systems"
   - "kafka"
 ---
+
 ## Introduction
 
 [In my previous blog post](https://lokesh1729.com/posts/kafka-internals-learn-kafka-in-depth), we learned the basics of kafka and covered vital concepts. If you haven't read it, it is a prerequisite, please read it. In this blog post, we will deep dive into the internals of kafka and learn how kafka works under the hood. At the end of the blog post, your perspective about kafka will change so that you feel kafka is not complex as you think.
@@ -189,7 +190,7 @@ As we see from the above log, all the messages with key `lokesh1729` went to the
 
 ### Index and Timeindex files
 
-Let's produce more messages with this [script](https://gist.github.com/lokesh1729/977e146cab41b5001210810685b8c36d#file-producer-py) and dump the data using the above command. 
+Let's produce more messages with this [script](https://gist.github.com/lokesh1729/977e146cab41b5001210810685b8c36d#file-producer-py) and dump the data using the above command.
 
 ```shell
 $ bin/kafka-dump-log.sh --files data/kafka/payments-8/00000000000000000000.log,data/kafka/payments-8/00000000000000000000.index --print-data-log
@@ -210,7 +211,7 @@ offset: 448 position: 58402
 offset: 485 position: 62533
 ```
 
-As we see from the above output, the index file stores the offset and its position of it in the `.log` file. Why is it needed? We know that consumers process messages sequentially. When a consumer asks for a message, kafka needs to fetch it from the log i.e. it needs to perform a disk I/O. Imagine, kafka reading each log file line by line to find an offset. It takes `O(n)` (where n is the number of lines in the file) time and latency of disk I/O. It will become a bottleneck when the log files are of gigabytes size. So, to optimize it, kafka stores the offset to position mapping in the `.index` file  so that if a consumer asks for any arbitrary offset it simply does a binary search on the `.index` file in the `O(log n)` time and goes to the `.log` file and performs the binary search again.
+As we see from the above output, the index file stores the offset and its position of it in the `.log` file. Why is it needed? We know that consumers process messages sequentially. When a consumer asks for a message, kafka needs to fetch it from the log i.e. it needs to perform a disk I/O. Imagine, kafka reading each log file line by line to find an offset. It takes `O(n)` (where n is the number of lines in the file) time and latency of disk I/O. It will become a bottleneck when the log files are of gigabytes size. So, to optimize it, kafka stores the offset to position mapping in the `.index` file so that if a consumer asks for any arbitrary offset it simply does a binary search on the `.index` file in the `O(log n)` time and goes to the `.log` file and performs the binary search again.
 
 Let's take an example, say a consumer is reading 190th offset. Firstly, the kafka broker reads the index file (refer to the above log) and performs a binary search, and either finds the exact offset or the closest to it. In this case, it finds offset as 175 and its position as 23042. Then, it goes to the `.log` file and performs the binary search again given the fact that the `.log` the file is an append-only data structure stored in ascending order of offsets.
 
@@ -292,8 +293,6 @@ Below is a sample log from the `.log` file. Let's dissect it.
 
 `size` - total size of the messages in the batch in bytes
 
-
-
 ```
 baseOffset: 1992 lastOffset: 1995 count: 4 baseSequence: -1 lastSequence: -1 producerId: -1 producerEpoch: -1 partitionLeaderEpoch: 0 isTransactional: false isControl: false position: 260309 CreateTime: 1672131859025 size: 474 magic: 2 compresscodec: none crc: 36982599 isvalid: true
 | offset: 1992 CreateTime: 1672131859022 keySize: 12 valueSize: 84 sequence: -1 headerKeys: [] key: craigpearson payload: {"username": "craigpearson", "address": "0414 Fischer Rest\nZacharyshire, MN 38196"}
@@ -301,8 +300,6 @@ baseOffset: 1992 lastOffset: 1995 count: 4 baseSequence: -1 lastSequence: -1 pro
 | offset: 1994 CreateTime: 1672131859025 keySize: 11 valueSize: 83 sequence: -1 headerKeys: [] key: gregoryjoel payload: {"username": "gregoryjoel", "address": "8306 Reed Trail\nFitzgeraldstad, PA 18715"}
 | offset: 1995 CreateTime: 1672131859025 keySize: 12 valueSize: 84 sequence: -1 headerKeys: [] key: craigpearson payload: {"username": "craigpearson", "address": "0533 Crystal Forks\nJasminefort, NV 54576"}
 ```
-
-
 
 ## Bonus
 

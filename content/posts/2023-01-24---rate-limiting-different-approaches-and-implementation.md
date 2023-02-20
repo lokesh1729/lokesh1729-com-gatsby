@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Rate Limiting - Different Approaches and Implementation
-slug: "/rate-limiting"
+slug: "/posts/rate-limiting"
 socialImage: "/media/rate-limiting.png"
 draft: false
 date: "2023-01-24T12:44:13.610Z"
@@ -12,6 +12,7 @@ tags:
   - "rate-limiting"
   - "software-engineering"
 ---
+
 ## Introduction
 
 In software engineering, rate limiting has so many use cases. A few examples are
@@ -39,6 +40,7 @@ The idea is simple, we will store the rate limit "X" at a cache key with an expi
 
    1. set the key with "T" seconds as TTL
    2. set the value as "X"
+
 3. If the key is found
 
    1. If the limit has been breached, reject the request.
@@ -72,6 +74,7 @@ How do we determine the breach?
 4. If the diff is greater than "T" seconds meaning the last window had already crossed.
 
    1. Reset the rate limit and timestamp. There is no need to set the expiry. These are persistent keys.
+
 5. Else
 
    1. Compute and set the remaining tokens. How to compute? Say, the rate limit is "x" req/minute, and the diff between the bucket timestamp and the current timestamp is "y" seconds. The remaining tokens would be `(y/1000) * x`

@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: Kafka Internals - Learn kafka in-depth (Part-1)
-slug: "/kafka-internals-learn-kafka-in-depth"
+slug: "/posts/kafka-internals-learn-kafka-in-depth"
 socialImage: "/media/learn-kafka-in-depth.png"
 draft: false
 date: "2022-02-20T03:23:36.300Z"
@@ -15,6 +15,7 @@ tags:
   - "distribute-systems"
   - "kafka"
 ---
+
 ## Introduction
 
 Kafka had gained huge popularity for the past few years. In a microservices architecture, it plays a pivotal role. It enables data to move from one service to another. I'm starting this series to help beginners understand Kafka in-depth. But, before we go in-depth, it is important to understand some basics. So, in this post, we'll learn the basics and eventually, we'll go in-depth.

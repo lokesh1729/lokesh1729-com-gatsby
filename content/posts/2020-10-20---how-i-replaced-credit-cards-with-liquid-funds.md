@@ -1,7 +1,7 @@
 ---
 template: "post"
 title: How I replaced credit cards with liquid mutual funds
-slug: "/replaced-credit-cards-with-liquid-mutual-funds"
+slug: "/posts/replaced-credit-cards-with-liquid-mutual-funds"
 socialImage: "/media/replace-credit-cards-with-mutual-funds.png"
 draft: false
 date: "2020-10-20"
@@ -11,14 +11,15 @@ tags:
   - "finance"
   - "tips"
 ---
+
 ![banner showing credit card and mutual fund](/media/replace-credit-cards-with-mutual-funds.png)
 
 This post is about personal finance and mostly suitable for people who live in India. Many of us (including me in the past) are using credit cards. There are pros and cons of using them. For me, I had bad experience using them. The reasons are
 
- 1. Spends too much unnecessarily
- 2. Pays minimum due thereby interest goes high
- 
- Hence, I decided to close them. But, later I faced month-end financial crisis many a times. So, every month I had to ask a friend or approach apps like [Walnut](https://getwalnut.com) to get out of the crisis. Months passed by, but still I did not solve this problem. One day I contemplated and felt "what's the point of earning when you're facing crisis every month ?"
+1.  Spends too much unnecessarily
+2.  Pays minimum due thereby interest goes high
+
+Hence, I decided to close them. But, later I faced month-end financial crisis many a times. So, every month I had to ask a friend or approach apps like [Walnut](https://getwalnut.com) to get out of the crisis. Months passed by, but still I did not solve this problem. One day I contemplated and felt "what's the point of earning when you're facing crisis every month ?"
 
 So, I opened my finance tracker apps ( I use Waltnut and [MoneyView](http://moneyview.in) to track my expenses ). I figured out this
 

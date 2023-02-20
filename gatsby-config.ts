@@ -243,5 +243,12 @@ export default {
         publisherId: "ca-pub-6262065201286775",
       },
     },
+    {
+      resolve: "gatsby-plugin-canonical-urls",
+      options: {
+        siteUrl: config.url,
+        stripQueryString: true,
+      },
+    },
   ],
 };

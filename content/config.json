@@ -1,38 +1,38 @@
 {
   "title": "Lokesh Sanapalli - A pragmatic software engineering leader",
   "url": "https://lokesh1729.com",
-  "subtitle": "Welcome to my blog",
+  "subtitle": "Lokesh Sanapalli is a software engineer with expertise in distributed systems, system design, software architecture. He writes on python, django, redis etc...",
   "copyright": "© All rights reserved.",
   "googleAnalyticsId": "UA-122847285-2",
   "disqusShortname": "lokesh1729",
   "postsLimit": 5,
   "pathPrefix": "/",
   "menu": [
-        {
-            "label": "Articles",
-            "path": "/"
-        },
-        {
-            "label": "About me",
-            "path": "/pages/about"
-        },
-        {
-            "label": "Contact me",
-            "path": "/pages/contact"
-        },
-        {
-            "label": "Resume",
-            "path": "/pages/resume"
-        },
-        {
-            "label": "Projects",
-            "path": "/pages/projects"
-        },
-        {
-            "label": "Mentorship",
-            "path": "/pages/mentorship"
-        }
-    ],
+    {
+      "label": "Articles",
+      "path": "/"
+    },
+    {
+      "label": "About me",
+      "path": "/pages/about"
+    },
+    {
+      "label": "Contact me",
+      "path": "/pages/contact"
+    },
+    {
+      "label": "Resume",
+      "path": "/pages/resume"
+    },
+    {
+      "label": "Projects",
+      "path": "/pages/projects"
+    },
+    {
+      "label": "Mentorship",
+      "path": "/pages/mentorship"
+    }
+  ],
   "author": {
     "name": "Lokesh Sanapalli",
     "photo": "/static/photo.png",

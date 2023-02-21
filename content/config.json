@@ -13,6 +13,14 @@
       "path": "/"
     },
     {
+      "label": "Snippets",
+      "path": "/snippets/"
+    },
+    {
+      "label": "Bytes",
+      "path": "/bytes/"
+    },
+    {
       "label": "About me",
       "path": "/pages/about/"
     },

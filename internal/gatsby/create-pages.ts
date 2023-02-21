@@ -53,7 +53,11 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions }) => {
         component: constants.templates.pageTemplate,
         context: { slug: node.fields.slug },
       });
-    } else if (node?.frontmatter?.template === "post" && node?.fields?.slug) {
+    } else if (
+      node?.frontmatter?.template &&
+      ["post", "snippet", "byte"].includes(node.frontmatter.template) &&
+      node?.fields?.slug
+    ) {
       createPage({
         path: node?.frontmatter?.slug || node.fields.slug,
         component: constants.templates.postTemplate,
@@ -150,6 +154,36 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions }) => {
       total,
       page,
       path,
+    });
+  }
+
+  const snippetPath = constants.routes.snippetsRoute;
+  const snippetTemplate = constants.templates.snippetsTemplate;
+  const snippets = await queries.snippetsQuery(graphql);
+  const totalSnippets = Math.ceil((snippets?.edges?.length ?? 0) / postsLimit);
+
+  for (let page = 0; page < totalSnippets; page += 1) {
+    createWithPagination({
+      limit: postsLimit,
+      template: snippetTemplate,
+      total: totalSnippets,
+      page,
+      path: snippetPath,
+    });
+  }
+
+  const bytesPath = constants.routes.bytesRoute;
+  const bytesTemplate = constants.templates.bytesTemplate;
+  const bytes = await queries.bytesQuery(graphql);
+  const totalBytes = Math.ceil((bytes?.edges?.length ?? 0) / postsLimit);
+
+  for (let page = 0; page < totalSnippets; page += 1) {
+    createWithPagination({
+      limit: postsLimit,
+      template: bytesTemplate,
+      total: totalBytes,
+      page,
+      path: bytesPath,
     });
   }
 };

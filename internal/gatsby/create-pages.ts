@@ -13,8 +13,13 @@ type CreateWithPagination = (parameters: {
   path: string;
 }) => void;
 
-const getPaginationPath = (basePath: string, page: number): string =>
-  [basePath === "/" ? "" : basePath, "page", page].join("/");
+const getPaginationPath = (basePath: string, page: number): string => {
+  let path = basePath;
+  if (path && path[path.length - 1] === "/") {
+    path = path.slice(0, path.length - 1);
+  }
+  return `${[path === "/" ? "" : path, "page", page].join("/")}/`;
+};
 
 const createPages: GatsbyNode["createPages"] = async ({ graphql, actions }) => {
   const { createPage } = actions;

@@ -1,6 +1,6 @@
 ---
 template: "post"
-title: Caching patterns
+title: Caching Patterns
 slug: "/posts/caching-patterns/"
 socialImage: "/media/caching-patterns.png"
 draft: false

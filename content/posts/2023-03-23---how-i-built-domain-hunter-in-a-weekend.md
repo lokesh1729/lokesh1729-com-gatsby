@@ -6,6 +6,7 @@ socialImage: "/media/domain-hunter.png"
 draft: false
 date: "2023-03-23T22:30:18.034Z"
 description: "I built domain hunter which generates domains available for registration based on the given terms using OpenAI."
+category: "Software Engineering"
 tags:
   - "software-engineering"
   - "openai"

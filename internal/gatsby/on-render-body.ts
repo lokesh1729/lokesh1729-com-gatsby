@@ -35,6 +35,25 @@ const onRenderBody = ({
         `,
       },
     }),
+    React.createElement("script", {
+      key: "netlify-identity",
+      src: "https://identity.netlify.com/v1/netlify-identity-widget.js",
+    }),
+    React.createElement("script", {
+      key: "netlify-identity-redirect",
+      dangerouslySetInnerHTML: {
+        __html: `
+            if (window.netlifyIdentity) {
+              window.netlifyIdentity.on("init", (user) => {
+                if (!user) {
+                  window.netlifyIdentity.on("login", () => {
+                    document.location.href = "/admin/";
+                  });
+                }
+              });
+            }`,
+      },
+    }),
   ]);
 
   setHtmlAttributes({ lang: "en" });

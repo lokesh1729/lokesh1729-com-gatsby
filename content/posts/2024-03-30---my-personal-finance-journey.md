@@ -38,6 +38,58 @@ I installed Postgresql in it and opened port 5432 to the public. Voila! I can co
 
 Then, I installed [metabase](https://www.metabase.com/docs/latest/configuring-metabase/setting-up-metabase) in it — as they said in their GitHub README, it just took only 5 minutes to set up — I quickly created some dashboards in it. Woohoo! 🥳 this is what I wanted. I have created dashboards for all the questions I wanted answers to. If I started with database and metabase at the beginning, it would have been an overkill. Since I tried other options and came here, never thought I was complicating it. It solved my problem.
 
-Then, I wanted a UI layer on top of my database so that I could add the transactions on the go. I found some no-code tools like [appsmith](https://www.appsmith.com?ref=lokesh1729.com), [retool](https://retool.com?ref=lokesh1729.com), etc... I went ahead with appsmith and set up my database. It has presets of default data tables and forms. I just had to make some customizations like adding dropdown values via SQL queries.
+Then, I wanted a UI layer on top of my database so that I could add the transactions on the go. I found some no-code tools like [appsmith](https://www.appsmith.com?ref=lokesh1729.com), [retool](https://retool.com?ref=lokesh1729.com), etc... I went ahead with Appsmith and set up my database. It has presets of default data tables and forms. I just had to make some customizations like adding dropdown values via SQL queries.
 
 ## Creating a personal finance system
+
+Well, After setting up the database, I have created a table for tracking the transactions manually. The schema of the table would look like this.
+
+\`\``sql
+
+CREATE TABLE public.transactions (
+
+	txn_date date NOT NULL,
+
+	account public."account_type" NOT NULL,
+
+	txn_type public."txn_enum_type" NOT NULL,
+
+	txn_amount float8 NOT NULL,
+
+	category public."txn_category_type" NOT NULL,
+
+	tags text DEFAULT ''::text NOT NULL,
+
+	notes text DEFAULT ''::text NOT NULL,
+
+	created_at timestamptz DEFAULT now() NOT NULL,
+
+	updated_at timestamptz NULL,
+
+	id serial4 NOT NULL,
+
+	CONSTRAINT transactions_pk PRIMARY KEY (id),
+
+	CONSTRAINT transactions_unique UNIQUE (txn_date, account, txn_type, txn_amount, category, tags, notes)
+
+);
+
+\`\``
+
+Then, I went to my bank's net banking, exported the data into CSV, and imported it into the database. Similarly, I did this for credit cards. There's a caveat. Not all credit cards give the data in CSV, only HDFC Bank via mobile app gives it. For others, converting from PDF to CSV is a challenge. So, I found this software called [tabula](https://github.com/tabulapdf/tabula). When you run this, it will open a UI at port 8080. We need to upload the PDF, select the table we want to capture manually, select stream or lattice in the extraction method, and export it to CSV.
+
+Then, I went to investments. Downloaded mutual funds transaction data from [CAMS](https://www.camsonline.com/Investors/Statements/Transaction-Details-Statement) and [Kfintech](https://mfs.kfintech.com/investor/General/AccountStatement). There's a caveat. The CSV format is not uniform for both. So, I have written a [Python script](https://gist.github.com/lokesh1729/675468e1ae98e6e4dde3d9119573c67a) for converting Kfintech data to CAMS. Similarly, I downloaded and imported the capital gains data from [CAMS](https://www.camsonline.com/Investors/Statements/Capital-Gain&Capital-Loss-statement) and [Kfintech](https://mfs.kfintech.com/investor/General/CapitalGainsLossAccountStatement). Also, I downloaded my stock transaction data, and dividends data from Zerodha and imported them into my database.
+
+The next question is, how often do I update this data? well, I do a quick review of my finances every 2-3 months by downloading my primary bank statements, and credit card statements. I enter the important transactions, and expenses into my \`transactions\` table by category and tags. Then, I import the data into the database. I import my investment data every 6 months or so.
+
+ Here are some of the screenshots from my metabase.
+
+![Image showing line chart of credit card transactions](/media/metabase-credit-cards.png "HDFC and SBI credit card spend trend by month")
+
+![An image showing pivot table in metabase](/media/metabase-pivot-table.png "Pivot table on my transactions data that I track manually")
+
+![An image showing fastag transactions](/media/metabase-fastag.png "I even imported the fastag transaction data 😂")
+
+Unfortunately, I cannot disclose more information than this. Of course, I have so many dashboards.
+
+That's all folks! hope you have enjoyed reading this blog. Please comment on how you manage your finances. Thanks for reading!

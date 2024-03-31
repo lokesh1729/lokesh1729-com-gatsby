@@ -44,37 +44,37 @@ Then, I wanted a UI layer on top of my database so that I could add the transact
 
 Well, After setting up the database, I have created a table for tracking the transactions manually. The schema of the table would look like this.
 
-\`\``sql
 
+
+```
 CREATE TABLE public.transactions (
 
-	txn_date date NOT NULL,
+txn_date date NOT NULL,
 
-	account public."account_type" NOT NULL,
+account public."account_type" NOT NULL,
 
-	txn_type public."txn_enum_type" NOT NULL,
+txn_type public."txn_enum_type" NOT NULL,
 
-	txn_amount float8 NOT NULL,
+txn_amount float8 NOT NULL,
 
-	category public."txn_category_type" NOT NULL,
+category public."txn_category_type" NOT NULL,
 
-	tags text DEFAULT ''::text NOT NULL,
+tags text DEFAULT ''::text NOT NULL,
 
-	notes text DEFAULT ''::text NOT NULL,
+notes text DEFAULT ''::text NOT NULL,
 
-	created_at timestamptz DEFAULT now() NOT NULL,
+created_at timestamptz DEFAULT now() NOT NULL,
 
-	updated_at timestamptz NULL,
+updated_at timestamptz NULL,
 
-	id serial4 NOT NULL,
+id serial4 NOT NULL,
 
-	CONSTRAINT transactions_pk PRIMARY KEY (id),
+CONSTRAINT transactions_pk PRIMARY KEY (id),
 
-	CONSTRAINT transactions_unique UNIQUE (txn_date, account, txn_type, txn_amount, category, tags, notes)
+CONSTRAINT transactions_unique UNIQUE (txn_date, account, txn_type, txn_amount, category, tags, notes)
+```
 
 );
-
-\`\``
 
 Then, I went to my bank's net banking, exported the data into CSV, and imported it into the database. Similarly, I did this for credit cards. There's a caveat. Not all credit cards give the data in CSV, only HDFC Bank via mobile app gives it. For others, converting from PDF to CSV is a challenge. So, I found this software called [tabula](https://github.com/tabulapdf/tabula). When you run this, it will open a UI at port 8080. We need to upload the PDF, select the table we want to capture manually, select stream or lattice in the extraction method, and export it to CSV.
 
@@ -86,9 +86,17 @@ The next question is, how often do I update this data? well, I do a quick review
 
 ![Image showing line chart of credit card transactions](/media/metabase-credit-cards.png "HDFC and SBI credit card spend trend by month")
 
-![An image showing pivot table in metabase](/media/metabase-pivot-table.png "Pivot table on my transactions data that I track manually")
+HDFC and SBI credit card spend trend by month
+
+![An image showing pivot table in metabase](/media/metabase-pivot-table.png "Pivot table on transactions table that I track manually")
+
+Pivot table on transactions table that I track manually.
+
+
 
 ![An image showing fastag transactions](/media/metabase-fastag.png "I even imported the fastag transaction data 😂")
+
+I even imported the fastag transaction data 😂
 
 Unfortunately, I cannot disclose more information than this. Of course, I have so many dashboards.
 

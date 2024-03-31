@@ -3,7 +3,7 @@ template: post
 title: My personal finance journey
 slug: my-personal-finance-journey
 socialImage: /media/my-personal-finance-journey.png
-draft: true
+draft: false
 date: 2024-03-30T03:20:43.096Z
 description: Managing finances is a hard job. You need to know how you are
   spending and investing money. I have used several methods since the beginning

@@ -14,6 +14,6 @@ Datadog is an application monitoring software. It instruments the application co
 
 Datadog provides different kinds of agents for the operating system and application code supporting many languages. The agent at the operating system level, sends the metrics related to the machine such as cpu, network, and memory. Agent at the application level, sends metrics as HTTP requests, database connection pools, jvm memory, etc...
 
-In this article, I will be discussing different approaches of sending custom metrics to datadog using java.
+In this article, I will be discussing different approaches to sending custom metrics to Datadog using Java.
 
 Datadog

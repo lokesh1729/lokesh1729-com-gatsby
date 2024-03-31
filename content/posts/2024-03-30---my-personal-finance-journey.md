@@ -14,6 +14,8 @@ category: personal finance
 tags:
   - finance
 ---
+![cover image](/media/my-personal-finance-journey.png "cover image")
+
 Managing finance is a hard job. If you are working at a company or self-employed, you need to be aware of the inflows and outflows of your money. Because you have done a lot of hard work at the job and earned that money, I will be discussing my personal finance journey.
 
 ### Walnut App
@@ -44,8 +46,6 @@ Then, I wanted a UI layer on top of my database so that I could add the transact
 
 Well, After setting up the database, I have created a table for tracking the transactions manually. The schema of the table would look like this.
 
-
-
 ```
 CREATE TABLE public.transactions (
 
@@ -72,9 +72,10 @@ id serial4 NOT NULL,
 CONSTRAINT transactions_pk PRIMARY KEY (id),
 
 CONSTRAINT transactions_unique UNIQUE (txn_date, account, txn_type, txn_amount, category, tags, notes)
+);
 ```
 
-);
+
 
 Then, I went to my bank's net banking, exported the data into CSV, and imported it into the database. Similarly, I did this for credit cards. There's a caveat. Not all credit cards give the data in CSV, only HDFC Bank via mobile app gives it. For others, converting from PDF to CSV is a challenge. So, I found this software called [tabula](https://github.com/tabulapdf/tabula). When you run this, it will open a UI at port 8080. We need to upload the PDF, select the table we want to capture manually, select stream or lattice in the extraction method, and export it to CSV.
 
@@ -91,8 +92,6 @@ HDFC and SBI credit card spend trend by month
 ![An image showing pivot table in metabase](/media/metabase-pivot-table.png "Pivot table on transactions table that I track manually")
 
 Pivot table on transactions table that I track manually.
-
-
 
 ![An image showing fastag transactions](/media/metabase-fastag.png "I even imported the fastag transaction data 😂")
 

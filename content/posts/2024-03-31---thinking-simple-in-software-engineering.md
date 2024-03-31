@@ -9,5 +9,7 @@ description: Software engineering is easy. We unnecessarily make it complicated.
   Fundamentals are crucial. If you think at the fundamentals level, everything
   will be easy. Each component is decoupled from each other.
 category: software engineering
+tags:
+  - software-engineering
 ---
 \----

@@ -1,7 +1,7 @@
 ---
 template: post
 title: My personal finance journey
-slug: my-personal-finance-journey
+slug: /posts/my-personal-finance-journey
 socialImage: /media/my-personal-finance-journey.png
 draft: false
 date: 2024-03-30T03:20:43.096Z

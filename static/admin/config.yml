@@ -6,8 +6,8 @@ media_folder: "static/media"
 public_folder: "/media"
 
 # Uncomment to leverage Netlify CMS UI authoring flow
-# see: https://www.netlifycms.org/docs/configuration-options/#publish-mode
-publish_mode: editorial_workflow
+# see: https://decapcms.org/docs/configuration-options/
+publish_mode: simple
 
 collections:
   - name: "posts"
@@ -25,9 +25,14 @@ collections:
         }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Slug", name: "slug", widget: "string" }
-      - { label: "Social Image", name: "socialImage", widget: "image" }
+      - {
+          label: "Social Image",
+          name: "socialImage",
+          widget: "image",
+          default: "/media/work-in-progress.png",
+        }
       - { label: "Draft", name: "draft", widget: "boolean", default: true }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Publish Date", name: "date", widget: "datetime", default: "" }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Category", name: "category", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
